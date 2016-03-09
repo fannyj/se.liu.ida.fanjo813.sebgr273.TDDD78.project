@@ -1,23 +1,9 @@
 package TheLostDiamond;
 
-import java.util.List;
+public class Bank extends MoneyHandler{
 
-public class Bank {
-    private int money;
-
-    public Bank(final int money) {
-	this.money = money;
+    public Bank(int amount) {
+        super(amount);
     }
 
-    public void addMoney(int amount){
-	money += amount;
-    }
-
-    public void removeMoney(int amount){
-	money -= amount;
-    }
-
-    public int getMoney() {
-	return money;
-    }
 }
