@@ -1,6 +1,6 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
-public class Player extends MoneyHandler{
+public class Player extends Bank {
     private String playerName;
 
     public Player(String name) {
