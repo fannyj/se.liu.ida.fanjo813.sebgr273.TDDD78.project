@@ -81,7 +81,7 @@ public class BoardViewer extends JFrame{
 	    @Override public void actionPerformed(final ActionEvent e) {
 		Object[] options = {"Yes", "Cancel"};
 		int optionChosen = JOptionPane.showOptionDialog(null,
-								"Are you sure?",
+								"Go to main menu?",
 								"Go to main menu",
 								JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE,
