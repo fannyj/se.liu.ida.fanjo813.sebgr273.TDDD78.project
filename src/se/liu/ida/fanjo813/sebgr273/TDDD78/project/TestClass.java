@@ -5,6 +5,8 @@ public class TestClass {
         GameEngine gameEngine = new GameEngine(10000);
         Player playah = new Player("Gert");
         System.out.println(playah.toString());
-        BoardViewer board = new BoardViewer(1280, 720);
+        System.out.println(playah.hasSsd());
+        System.out.println(playah.hasStack());
+        //BoardViewer board = new BoardViewer();
     }
 }
