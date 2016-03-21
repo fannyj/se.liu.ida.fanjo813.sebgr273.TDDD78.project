@@ -10,7 +10,7 @@ public class GameEngine extends Bank {
         super(amount);
         playerList = players;
         /*ska vara kod emellan*/
-        if(curPlayer.canWin()/*.onBrick == BrickType.SSD || curPlayer.onBrick == BrickType.STACK*/){
+        if(curPlayer.onBrick() == BrickType.SSD || curPlayer.onBrick() == BrickType.STACK){
             onWinningPiece(curPlayer);
         }
     }

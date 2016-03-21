@@ -18,7 +18,7 @@ public class Player extends Bank {
     }
 
     public BrickType onBrick(){
-        return GameBoard.brickAt(posX, posY);
+        return GameBoard.brickAt(0, 0);
     }
 
     @Override
