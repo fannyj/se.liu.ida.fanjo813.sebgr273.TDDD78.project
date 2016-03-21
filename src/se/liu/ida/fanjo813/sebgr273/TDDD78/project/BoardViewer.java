@@ -9,13 +9,13 @@ import java.io.*;
 import java.awt.Graphics2D;
 
 public class BoardViewer extends JFrame{
-
-    public static final int WIDTH = 1280;
-    public static final int HEIGHT = 720;
     private BufferedImage image;
     private JFrame myJFrame;
+    private int height, width;
 
-    public BoardViewer(){
+    public BoardViewer(int width, int height){
+        this.height = height;
+        this.width = width;
         image = null;
         try {
             image = ImageIO.read(ClassLoader.getSystemResource("resources/images/bg.png"));
@@ -25,7 +25,7 @@ public class BoardViewer extends JFrame{
         image = resizeImage();
         myJFrame = new JFrame("Spelet");
         myJFrame.setContentPane(new BoardComponent(image));
-        myJFrame.setSize(WIDTH, HEIGHT);
+        myJFrame.setSize(this.width, this.height);
         createMenus();
         myJFrame.setVisible(true);
         myJFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
