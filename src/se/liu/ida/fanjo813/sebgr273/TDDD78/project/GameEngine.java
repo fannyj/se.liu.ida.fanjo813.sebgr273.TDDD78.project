@@ -1,10 +1,22 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
-public class GameEngine extends Bank {
+import java.util.*;
 
-    public GameEngine(int amount) {
+public class GameEngine extends Bank {
+    private List<Player> playerList;
+    private Player curPlayer;
+
+    public GameEngine(int amount, ArrayList players) {
         super(amount);
+        playerList = players;
+        /*ska vara kod emellan*/
+        if(curPlayer.canWin()/*.onBrick == BrickType.SSD || curPlayer.onBrick == BrickType.STACK*/){
+            onWinningPiece(curPlayer);
+        }
     }
-    //Gör om till "spelledare"/spelmotor
+
+    private void onWinningPiece(Player player){
+        player.setWin();
+    }
 
 }
