@@ -8,11 +8,12 @@ import java.awt.image.*;
 import java.io.*;
 import java.awt.Graphics2D;
 
-public class BoardViewer{
+public class BoardViewer extends JFrame{
 
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
-    private static BufferedImage image;
+    private BufferedImage image;
+    private JFrame myJFrame;
 
     public BoardViewer(){
         image = null;
@@ -22,17 +23,17 @@ public class BoardViewer{
             e.printStackTrace();
         }
         image = resizeImage();
-        JFrame myJFrame = new JFrame("Spelet");
+        myJFrame = new JFrame("Spelet");
         myJFrame.setContentPane(new BoardComponent(image));
         myJFrame.setSize(WIDTH, HEIGHT);
-	createMenus();
+        createMenus();
         myJFrame.setVisible(true);
         myJFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
 
 
-    public static BufferedImage resizeImage() {
+    private BufferedImage resizeImage() {
         int type=0;
         type = image.getType() == 0? BufferedImage.TYPE_INT_ARGB : image.getType();
         BufferedImage resizedImage = new BufferedImage(WIDTH, HEIGHT,type);
@@ -45,7 +46,7 @@ public class BoardViewer{
     private void createMenus(){
 	final JMenuBar menuBar = new JMenuBar();
 
-	final JMenu optionMenu = new JMenu("Options");
+	final JMenu optionMenu = new JMenu("Game");
 	final JMenuItem newGameItem = new JMenuItem("New Game");
 	final JMenuItem quitItem = new JMenuItem("Main Menu");
 	optionMenu.add(newGameItem);
@@ -90,7 +91,7 @@ public class BoardViewer{
 
 	menuBar.add(Box.createHorizontalGlue());
 	menuBar.add(optionMenu);
-	BoardComponent.setJMenuBar(menuBar);
+	myJFrame.setJMenuBar(menuBar);
 
     }
 
