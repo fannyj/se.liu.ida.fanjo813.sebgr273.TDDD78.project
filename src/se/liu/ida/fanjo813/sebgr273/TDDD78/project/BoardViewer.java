@@ -46,12 +46,17 @@ public class BoardViewer extends JFrame{
     private void createMenus(){
 	final JMenuBar menuBar = new JMenuBar();
 
-	final JMenu optionMenu = new JMenu("Game");
+	final JMenu gameMenu = new JMenu("Game");
+	final JMenu optionMenu = new JMenu("Option");
 	final JMenuItem newGameItem = new JMenuItem("New Game");
 	final JMenuItem quitItem = new JMenuItem("Main Menu");
-	optionMenu.add(newGameItem);
-	optionMenu.addSeparator();
-	optionMenu.add(quitItem);
+	final JMenuItem screenSize = new JMenuItem("Screen Size");
+	final JMenuItem name = new JMenuItem("Name");
+	gameMenu.add(newGameItem);
+	gameMenu.addSeparator();
+	gameMenu.add(quitItem);
+	optionMenu.add(screenSize);
+	optionMenu.add(name);
 
 /*
 	newGameItem.addActionListener(new ActionListener() {
@@ -90,6 +95,7 @@ public class BoardViewer extends JFrame{
 	});
 
 	menuBar.add(Box.createHorizontalGlue());
+	menuBar.add(gameMenu);
 	menuBar.add(optionMenu);
 	myJFrame.setJMenuBar(menuBar);
 
