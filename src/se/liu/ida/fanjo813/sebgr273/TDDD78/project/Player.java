@@ -18,9 +18,9 @@ public class Player extends Bank {
         canWin = true;
     }
 
-    public BrickType onBrick(){
-        return GameBoard.brickAt(0, 0);
-    }
+//    public BrickType onBrick(){
+//        return GameBoard.brickAt(0, 0);
+//    }
 
     @Override
     public String toString(){

@@ -2,20 +2,22 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
 import javax.imageio.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.*;
 import java.io.*;
-import java.awt.Graphics2D;
 
 public class BoardViewer extends JFrame{
+    private GameBoard board;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
     private BufferedImage image;
     private JFrame myJFrame;
 
-    public BoardViewer(){
-        image = null;
+    public BoardViewer(){ //GameBoard board){
+//	this.board = board;
+	image = null;
         try {
             image = ImageIO.read(ClassLoader.getSystemResource("resources/images/bg.png"));
         } catch (IOException e) {
@@ -28,6 +30,7 @@ public class BoardViewer extends JFrame{
         createMenus();
         myJFrame.setVisible(true);
         myJFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	paintComponent(getGraphics());
     }
 
 
@@ -41,6 +44,15 @@ public class BoardViewer extends JFrame{
         g.dispose();
         return resizedImage;
     }
+
+
+    protected void paintComponent(Graphics g) {
+	super.paintComponents(g);
+	final Graphics2D g2d = (Graphics2D) g;
+	g.drawOval(10, 10 , 10 , 10);
+    }
+
+
 
     private void createMenus(){
 	final JMenuBar menuBar = new JMenuBar();
