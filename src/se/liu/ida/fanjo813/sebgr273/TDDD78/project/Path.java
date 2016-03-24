@@ -20,4 +20,28 @@ public class Path {
         this.costFrom2To1 = costFrom2To1;
         this.alternativeCost = alternativeCost;
     }
+
+    public Position getPosition1() {
+	return position1;
+    }
+
+    public Position getPosition2() {
+	return position2;
+    }
+
+    public PathType getPathType() {
+	return pathType;
+    }
+
+    public int getCostFrom1To2() {
+	return costFrom1To2;
+    }
+
+    public int getCostFrom2To1() {
+	return costFrom2To1;
+    }
+
+    public int getAlternativeCost() {
+	return alternativeCost;
+    }
 }

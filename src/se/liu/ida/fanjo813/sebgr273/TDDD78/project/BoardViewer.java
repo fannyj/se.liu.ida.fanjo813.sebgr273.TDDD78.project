@@ -10,13 +10,14 @@ import java.io.*;
 
 public class BoardViewer extends JFrame{
     private GameBoard board;
+    private BoardComponent boardComponent;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
     private BufferedImage image;
     private JFrame myJFrame;
 
-    public BoardViewer(){ //GameBoard board){
-//	this.board = board;
+    public BoardViewer(GameBoard board){
+	this.board = board;
 	image = null;
         try {
             image = ImageIO.read(ClassLoader.getSystemResource("resources/images/bg.png"));
@@ -25,12 +26,12 @@ public class BoardViewer extends JFrame{
         }
         image = resizeImage();
         myJFrame = new JFrame("Spelet");
-        myJFrame.setContentPane(new BoardComponent(image));
+	boardComponent = new BoardComponent(image, board);
+        myJFrame.setContentPane(boardComponent);
         myJFrame.setSize(WIDTH, HEIGHT);
         createMenus();
         myJFrame.setVisible(true);
         myJFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	paintComponent(getGraphics());
     }
 
 
@@ -44,14 +45,6 @@ public class BoardViewer extends JFrame{
         g.dispose();
         return resizedImage;
     }
-
-
-    protected void paintComponent(Graphics g) {
-	super.paintComponents(g);
-	final Graphics2D g2d = (Graphics2D) g;
-	g.drawOval(10, 10 , 10 , 10);
-    }
-
 
 
     private void createMenus(){

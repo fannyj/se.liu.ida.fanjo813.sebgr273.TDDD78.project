@@ -6,6 +6,6 @@ public class TestClass {
     public static final void main(String[] args) {
         Player playah = new Player("Gert");
         System.out.println(playah.toString());
-        BoardViewer board = new BoardViewer();
+        BoardViewer boardViewer = new BoardViewer(board);
     }
 }
