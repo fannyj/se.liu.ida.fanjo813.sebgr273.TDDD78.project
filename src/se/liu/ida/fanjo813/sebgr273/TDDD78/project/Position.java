@@ -3,10 +3,8 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class Position extends Point
-{
+public class Position extends Point {
     private int id;
-
     private BrickType brick; //Bara city´s kan ha bricks. Alla andra är EMPTY
     private boolean isCity;
     private String cityName;

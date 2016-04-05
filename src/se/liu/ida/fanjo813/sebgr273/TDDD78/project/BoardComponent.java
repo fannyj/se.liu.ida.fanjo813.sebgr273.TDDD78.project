@@ -23,8 +23,8 @@ public class BoardComponent extends JComponent {
 
     private void paintPositions(Graphics g){
 	for (Position pos : board.getPositions()){
-	    int x = pos.getxPos();
-	    int y = pos.getyPos();
+	    int x = pos.x;
+	    int y = pos.y;
 	    int diameter;
 	    if (pos.isCity()){
 		diameter = 50;
@@ -39,13 +39,11 @@ public class BoardComponent extends JComponent {
 
     private void paintPaths(Graphics g){
 	for (Path path : board.getPaths()){
-	    int x1 = path.getPosition1().getxPos();
-	    int x2 = path.getPosition2().getxPos();
-	    int y1 = path.getPosition1().getyPos();
-	    int y2 = path.getPosition2().getyPos();
+	    Position p1 = path.getPosition1();
+	    Position p2 = path.getPosition2();
 	    // Borde swicha på olika PathType, kanske olika färg/streck...
 	    g.setColor(Color.ORANGE);
-	    g.drawLine(x1, y1, x2, y2);
+	    g.drawLine(p1.x, p1.y, p2.x, p2.y);
 	}
     }
 
