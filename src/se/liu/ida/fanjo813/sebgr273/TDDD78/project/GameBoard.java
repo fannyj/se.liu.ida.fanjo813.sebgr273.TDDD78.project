@@ -19,7 +19,7 @@ public class GameBoard {
     }
 
     public void setupBoard(){
-        addPosition(1, 100, 100, SSD, true, "Linköping", false);
+        addPosition(1, 101, 100, SSD, true, "Linköping", false);
         addPosition(2, 200, 100, STACK, true, "Malmö", false);
         addPosition(3, 300, 100, EMPTY, false, "", false);
         addPosition(4, 450, 300, EMPTY, false, "", false);
