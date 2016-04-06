@@ -25,14 +25,16 @@ public class BoardComponent extends JComponent {
 	for (Position pos : board.getPositions()){
 	    int x = pos.x;
 	    int y = pos.y;
-	    int diameter;
+        Color color = Color.GREEN;
+	    int diameter = 20;
 	    if (pos.isCity()){
-		diameter = 50;
-		g.setColor(Color.YELLOW);
-	    } else {
-		diameter = 20;
-		g.setColor(Color.GREEN);
-	    }
+			diameter = 50;
+			color = Color.YELLOW;
+	    }else if(pos.isStartPos()) {
+            diameter = 100;
+            color = Color.pink;
+        }
+        g.setColor(color);
 	    g.fillOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
 	}
     }

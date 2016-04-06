@@ -9,7 +9,7 @@ public class GameEngine extends Bank {
     private GameBoard board;
     private boolean winningPlayer;
 
-    public GameEngine(int amount, ArrayList<Player> players) {
+    public GameEngine(int amount, List<Player> players) {
         super(amount);
         board = new GameBoard();
         playerList = players;
@@ -32,6 +32,9 @@ public class GameEngine extends Bank {
         curPlayer.move(moves);
 
         if(board.onBrick(curPlayer.getCurPos())){
+            /*ask player for action, if yes do action,
+            if dicethrow, needs 4, 5 or 6, else player pays,
+            otherwise end turn*/
             board.getBrick(curPlayer.getCurPos());
         }
         endTurn();
@@ -51,7 +54,7 @@ public class GameEngine extends Bank {
     }
 
     private void endTurn() {
-        if (curPlayerIndex <= playerList.size()) {
+        if (curPlayerIndex < playerList.size()) {
             curPlayerIndex++;
         } else {
             curPlayerIndex = 0;

@@ -4,7 +4,7 @@ import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.BrickType.EMPTY;
 
 public enum StartPlace {
     /*Change names to more appropriate*/
-    KAIRO(new Position(0, 10, 5, EMPTY, "Kairo")), TANGER(new Position(1, 20, 5, EMPTY, "Tanger"));
+    KAIRO(new Position(98, 10, 5, EMPTY, false,"Kairo", true)), TANGER(new Position(99, 20, 5, EMPTY, false, "Tanger", true));
 
     public final Position position;
 

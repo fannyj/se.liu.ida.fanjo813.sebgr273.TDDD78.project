@@ -7,15 +7,17 @@ public class Position extends Point {
     private int id;
     private BrickType brick; //Bara city´s kan ha bricks. Alla andra är EMPTY
     private boolean isCity;
+    private boolean isStartPos;
     private String cityName;
 
 
-    public Position(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName) {
-	super(xPos, yPos);
-	this.id = id;
-	this.brick = brick;
-	this.isCity = isCity;
-	this.cityName = cityName;
+    public Position(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos) {
+        super(xPos, yPos);
+        this.id = id;
+        this.brick = brick;
+        this.isCity = isCity;
+        this.cityName = cityName;
+        this.isStartPos = isStartPos;
     }
 
 
@@ -30,6 +32,8 @@ public class Position extends Point {
     public boolean isCity() {
 	return isCity;
     }
+
+    public boolean isStartPos(){return isStartPos;}
 
     public String getCityName() {
 	return cityName;

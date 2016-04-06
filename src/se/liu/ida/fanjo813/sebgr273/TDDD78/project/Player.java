@@ -1,14 +1,16 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+import java.awt.Point;
+
 public class Player extends Bank {
     private String playerName;
     private boolean canWin = false;
-    private BoardPosition curPos;
+    private Point curPos;
 
-    public Player(String name, StartPlace place) {
+    public Player(String name, BoardPosition position) {
         super(5000);
         playerName = name;
-        curPos = place.getPosition();
+        curPos = position.getLocation();
     }
 
     public boolean canWin(){
@@ -25,7 +27,7 @@ public class Player extends Bank {
          */
     }
 
-    public BoardPosition getCurPos() {
+    public Point getCurPos() {
         return curPos;
     }
 
@@ -37,6 +39,7 @@ public class Player extends Bank {
     public String toString(){
         return playerName
                 + " has " + getAmount()
-                + " dogecoins.";
+                + " dogecoins and is at " +
+                curPos.getX() + ":" + curPos.getY();
     }
 }
