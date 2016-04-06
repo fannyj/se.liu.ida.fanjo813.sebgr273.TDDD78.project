@@ -8,7 +8,7 @@ public class Player extends Bank {
     private Point curPos;
 
     public Player(String name, BoardPosition position) {
-        super(4989);
+        super(4998);
         playerName = name;
         curPos = position.getLocation();
     }
