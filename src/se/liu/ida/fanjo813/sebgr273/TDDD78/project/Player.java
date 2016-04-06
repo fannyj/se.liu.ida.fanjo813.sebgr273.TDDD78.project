@@ -21,12 +21,6 @@ public class Player extends Bank {
         canWin = true;
     }
 
-    public void move(int steps){
-        /**Allows the player to move in a direction.*
-         * Can max move "steps" steps
-         */
-    }
-
     public Point getCurPos() {
         return curPos;
     }
