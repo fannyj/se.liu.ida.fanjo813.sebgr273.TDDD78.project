@@ -29,14 +29,9 @@ public class GameEngine extends Bank {
 
     private void standardRotation(){
         int moves = diceThrow();
-        curPlayer.move(moves);
+        Move move = new Move(moves, curPlayer, board.getBrickList());
+        move.move();
 
-        if(board.onBrick(curPlayer.getCurPos())){
-            /*ask player for action, if yes do action,
-            if dicethrow, needs 4, 5 or 6, else player pays,
-            otherwise end turn*/
-            board.getBrick(curPlayer.getCurPos());
-        }
         endTurn();
     }
 
