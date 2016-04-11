@@ -28,10 +28,10 @@ public class BoardComponent extends JComponent {
         Color color = Color.GREEN;
 	    int diameter = 20;
 	    if (pos.isCity()){
-			diameter = 50;
+			diameter = 20;
 			color = Color.YELLOW;
 	    }else if(pos.isStartPos()) {
-            diameter = 100;
+            diameter = 25;
             color = Color.pink;
         }
         g.setColor(color);
