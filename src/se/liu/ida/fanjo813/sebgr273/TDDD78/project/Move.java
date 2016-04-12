@@ -49,7 +49,6 @@ public class Move{
         Brick brick = getBrick();
         switch (brick.getBrickType()){
             case MONEY:
-                /*check for exact amount*/
                 break;
             case SSD:
                 /*set winningPlayer to true*/

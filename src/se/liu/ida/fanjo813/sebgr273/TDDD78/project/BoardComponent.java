@@ -2,6 +2,7 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class BoardComponent extends JComponent {
     private Image image;
@@ -16,8 +17,8 @@ public class BoardComponent extends JComponent {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
-	paintPaths(g);
-	paintPositions(g);
+        paintPaths(g);
+        paintPositions(g);
     }
 
 
