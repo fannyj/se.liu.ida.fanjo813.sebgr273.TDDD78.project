@@ -10,11 +10,13 @@ public class GameBoard {
     private List<Position> positions;
     private List<Player> players;
     private List<Path> paths;
+    private List<Brick> brickList;
 
     public GameBoard(){
         positions = new ArrayList<Position>();
 	paths = new ArrayList<Path>();
         players = new ArrayList<Player>();
+        brickList = new ArrayList<Brick>();
         setupBoard();
     }
 
@@ -122,12 +124,7 @@ public class GameBoard {
         return paths;
     }
 
-    public boolean onBrick(Point point){
-        /*fill with code*/
-        return false;
-    }
-
-    public void getBrick(Point point){/*fill with code*/}
+    public List<Brick> getBrickList() {return brickList;}
     /*
     public static BrickType brickAt(int posX, int posY){
         return brickList.get(0);

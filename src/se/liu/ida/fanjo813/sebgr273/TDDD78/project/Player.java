@@ -8,7 +8,7 @@ public class Player extends Bank {
     private Point curPos;
 
     public Player(String name, BoardPosition position) {
-        super(5000);
+        super(4998);
         playerName = name;
         curPos = position.getLocation();
     }
@@ -19,12 +19,6 @@ public class Player extends Bank {
 
     public void setWin(){
         canWin = true;
-    }
-
-    public void move(int steps){
-        /**Allows the player to move in a direction.*
-         * Can max move "steps" steps
-         */
     }
 
     public Point getCurPos() {
