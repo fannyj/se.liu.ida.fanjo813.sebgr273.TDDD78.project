@@ -7,12 +7,12 @@ import java.awt.Point;
 public class Player extends Bank {
     private String playerName;
     private boolean canWin = false;
-    private Point curPos;
+    private Position curPos;
 
-    public Player(String name, BoardPosition position) {
+    public Player(String name, Position position) {
         super(4998);
         playerName = name;
-        curPos = position.getLocation();
+        curPos = position;
     }
 
 
@@ -25,11 +25,15 @@ public class Player extends Bank {
         canWin = true;
     }
 
+    public Position getPosition(){
+	return curPos;
+    }
+
     public Point getCurPos() {
         return curPos;
     }
 
-    public void setCurPos(BoardPosition curPos) {
+    public void setCurPos(Position curPos) {
         this.curPos = curPos;
     }
 

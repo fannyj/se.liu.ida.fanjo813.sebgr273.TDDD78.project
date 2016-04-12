@@ -9,15 +9,15 @@ import java.awt.image.*;
 import java.io.*;
 
 public class BoardViewer extends JFrame{
-    private GameBoard board;
+    private GameEngine game;
     private BoardComponent boardComponent;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
     private BufferedImage image;
     private JFrame myJFrame;
 
-    public BoardViewer(GameBoard board){
-	this.board = board;
+    public BoardViewer(GameEngine game){
+	this.game = game;
 	image = null;
         try {
             image = ImageIO.read(ClassLoader.getSystemResource("resources/images/bg.png"));
@@ -26,7 +26,7 @@ public class BoardViewer extends JFrame{
         }
         image = resizeImage();
         myJFrame = new JFrame("Spelet");
-	boardComponent = new BoardComponent(image, board);
+	boardComponent = new BoardComponent(image, game);
         myJFrame.setContentPane(boardComponent);
         myJFrame.setSize(WIDTH, HEIGHT);
         createMenus();

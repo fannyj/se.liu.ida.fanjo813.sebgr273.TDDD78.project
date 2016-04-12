@@ -124,6 +124,7 @@ public class GameBoard {
         return paths;
     }
 
+
     public List<Brick> getBrickList() {return brickList;}
     /*
     public static BrickType brickAt(int posX, int posY){
