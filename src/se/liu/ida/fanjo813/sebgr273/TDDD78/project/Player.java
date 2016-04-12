@@ -1,5 +1,7 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+import sun.java2d.loops.GraphicsPrimitiveMgr;
+
 import java.awt.Point;
 
 public class Player extends Bank {
@@ -12,6 +14,8 @@ public class Player extends Bank {
         playerName = name;
         curPos = position.getLocation();
     }
+
+
 
     public boolean canWin(){
         return canWin;
