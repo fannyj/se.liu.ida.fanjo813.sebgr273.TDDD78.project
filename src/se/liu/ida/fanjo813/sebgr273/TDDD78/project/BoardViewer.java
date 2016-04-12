@@ -37,7 +37,7 @@ public class BoardViewer extends JFrame{
         myJFrame.setContentPane(boardComponent);
         myJFrame.setSize(WIDTH, HEIGHT);
 
-        System.out.println(myJFrame.getBounds());
+        System.out.println(myJFrame.getSize());
 
         createMenus();
         myJFrame.setVisible(true);
@@ -143,8 +143,8 @@ class DefaultClickHandler implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Point pos = e.getPoint();
-        x = pos.getX();
-        y = pos.getY();
+        x = pos.getX()-8;
+        y = pos.getY()-54;
         System.out.println(x + ":" + y);
     }
 }
