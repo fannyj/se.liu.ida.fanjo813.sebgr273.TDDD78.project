@@ -28,8 +28,7 @@ public class GameEngine extends Bank {
     }
 
     private void standardRotation(){
-        int moves = diceThrow();
-        Move move = new Move(moves, curPlayer, board.getBrickList());
+        Move move = new Move(curPlayer, board.getBrickList());
         move.move();
 
         endTurn();
@@ -42,10 +41,6 @@ public class GameEngine extends Bank {
 
     private void onWinningPiece(Player player){
         player.setWin();
-    }
-
-    private int diceThrow(){
-        return (int) (6.0 * Math.random()) + 1;
     }
 
     private void endTurn() {

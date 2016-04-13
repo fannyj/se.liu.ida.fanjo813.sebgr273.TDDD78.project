@@ -29,6 +29,10 @@ public class Player extends Bank {
         this.curPos = curPos;
     }
 
+    public int diceThrow(){
+        return (int) (6.0 * Math.random()) + 1;
+    }
+
     @Override
     public String toString(){
         return playerName

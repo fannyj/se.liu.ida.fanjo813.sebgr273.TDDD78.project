@@ -17,6 +17,7 @@ public class BoardViewer extends JFrame{
     public static final int HEIGHT = 720;
     private BufferedImage image;
     private JFrame myJFrame;
+    private static boolean canMove = false;
 
     public BoardViewer(GameBoard board){
         this.board = board;
@@ -44,7 +45,17 @@ public class BoardViewer extends JFrame{
         myJFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    public static void setCanMove(){
+        canMove = true;
+    }
 
+    public static void setCanNotMove(){
+        canMove = false;
+    }
+
+    public static boolean getMoveState(){
+        return canMove;
+    }
 
     private BufferedImage resizeImage() {
         int type=0;
@@ -145,6 +156,9 @@ class DefaultClickHandler implements MouseListener {
         Point pos = e.getPoint();
         x = pos.getX()-8;
         y = pos.getY()-54;
-        System.out.println(x + ":" + y);
+    }
+
+    public Point returnClickPos(){
+        return new Point((int)x, (int)y);
     }
 }
