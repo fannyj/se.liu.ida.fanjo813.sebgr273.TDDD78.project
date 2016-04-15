@@ -19,8 +19,8 @@ public class BoardViewer extends JFrame{
     private JFrame myJFrame;
     private static boolean canMove = false;
 
-    public BoardViewer(GameBoard board){
-        this.board = board;
+    public BoardViewer(GameEngine game){
+        this.game = game;
         image = null;
         try {
             image = ImageIO.read(ClassLoader.getSystemResource("resources/images/bg.png"));
@@ -34,11 +34,10 @@ public class BoardViewer extends JFrame{
         DefaultClickHandler mouseClickHandler = new DefaultClickHandler();
         myJFrame.addMouseListener(mouseClickHandler);
 
-        boardComponent = new BoardComponent(image, board);
+
+        boardComponent = new BoardComponent(image, this.game);
         myJFrame.setContentPane(boardComponent);
         myJFrame.setSize(WIDTH, HEIGHT);
-
-        System.out.println(myJFrame.getSize());
 
         createMenus();
         myJFrame.setVisible(true);
@@ -158,7 +157,7 @@ class DefaultClickHandler implements MouseListener {
         y = pos.getY()-54;
     }
 
-    public Point returnClickPos(){
+    public Point clickPos(){
         return new Point((int)x, (int)y);
     }
 }

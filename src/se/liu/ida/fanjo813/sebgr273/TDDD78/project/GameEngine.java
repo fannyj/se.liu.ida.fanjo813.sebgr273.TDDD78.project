@@ -1,26 +1,36 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+import javax.swing.*;
 import java.util.*;
+import java.awt.Point;
+
+import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.StartPlace.KAIRO;
+import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.StartPlace.TANGER;
 
 public class GameEngine extends Bank {
     private List<Player> players;
     private Player curPlayer;
     private int curPlayerIndex;
     private GameBoard board;
-    private boolean winningPlayer;
+    private boolean winCondition;
 
     public GameEngine(int amount) {
         super(amount);
         board = new GameBoard();
-	players = new ArrayList<Player>();
-
+        players = new ArrayList<Player>();
+        winCondition = false;
     }
 
     public void play(){
- 	winningPlayer = false;
-	setPlayers();
- 	startGame();
 
+        setPlayers();
+        startGame();
+
+        while(!winCondition){
+            standardRotation();
+        }
+
+        System.out.println("Someone won");
 //	 while(!winningPlayer){
 //	     standardRotation();
 //	 }
@@ -32,14 +42,27 @@ public class GameEngine extends Bank {
     }
 
     public void setPlayers(){
-	Player player = new Player("Gert", board.getPosition(1));
-	players.add(player);
+        //Player player = new Player("Gert", board.getPosition(1));
+        String amount = JOptionPane.showInputDialog(null, "How many players?");
+        int amnt = Integer.parseInt(amount);
+        for(int i = 0; i < amnt; i++){
+            String name = JOptionPane.showInputDialog(null, "Write the name of player " + (i+1) + ":");
+            String id = JOptionPane.showInputDialog(null, "What city do you want to start in?");
+            int pos = Integer.parseInt(id);
+            players.add(new Player(name, board.getPosition(pos)));
+
+        }
+    }
+
+    public void checkClickPos(Point point){
+
     }
 
     private void standardRotation(){
+        curPlayer = players.get(curPlayerIndex);
         Move move = new Move(curPlayer, board.getBrickList());
-        move.move();
-
+        move.moveRotation();
+        System.out.println("Start");
         endTurn();
     }
 
@@ -61,15 +84,21 @@ public class GameEngine extends Bank {
     }
 
     public List<Player> getPlayers(){
-	return players;
+        return players;
+    }
+
+    public Player getCurPlayer(){
+        return curPlayer;
     }
 
     private void endTurn() {
-        if (curPlayerIndex < players.size()) {
-            curPlayerIndex++;
+        System.out.println("Slut");
+        if(curPlayer.getPlayerName().equals("Alex")){
+            this.winCondition = true;
         } else {
-            curPlayerIndex = 0;
+            this.curPlayerIndex++;
         }
     }
+
 
 }

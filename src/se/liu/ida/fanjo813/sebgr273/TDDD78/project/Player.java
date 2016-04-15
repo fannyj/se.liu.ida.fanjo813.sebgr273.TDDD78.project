@@ -25,9 +25,6 @@ public class Player extends Bank {
         canWin = true;
     }
 
-    public Position getPosition(){
-	return curPos;
-    }
 
     public Point getCurPos() {
         return curPos;
@@ -35,6 +32,10 @@ public class Player extends Bank {
 
     public void setCurPos(Position curPos) {
         this.curPos = curPos;
+    }
+
+    public String getPlayerName(){
+        return playerName;
     }
 
     public int diceThrow(){

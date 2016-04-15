@@ -10,36 +10,36 @@ public class BoardComponent extends JComponent {
 
     public BoardComponent(Image image, GameEngine game) {
         this.image = image;
-	this.game = game;
-	this.player = player;
+		this.game = game;
+		this.player = game.getCurPlayer();
     }
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
-	paintPaths(g);
-	paintPositions(g);
-	paintPlayers(g);
+		paintPaths(g);
+		paintPositions(g);
+		paintPlayers(g);
     }
 
 
     private void paintPositions(Graphics g){
-	for (Position pos : game.getBoard().getPositions()){
-	    int x = pos.x;
-	    int y = pos.y;
-	    Color color = Color.GREEN;
-	    int diameter = 20;
-	    if (pos.isCity()){
-		diameter = 20;
-		color = Color.YELLOW;
-	    } else if (pos.isStartPos()) {
-            	diameter = 25;
-            	color = Color.pink;
-	    }
-	    g.setColor(color);
-	    g.fillOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
-	}
+		for (Position pos : game.getBoard().getPositions()){
+			int x = pos.x;
+			int y = pos.y;
+			Color color = Color.GREEN;
+			int diameter = 20;
+			if (pos.isCity()){
+				diameter = 20;
+				color = Color.YELLOW;
+			} else if (pos.isStartPos()) {
+				diameter = 25;
+				color = Color.pink;
+			}
+			g.setColor(color);
+			g.fillOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
+		}
     }
 
     private void paintPaths(Graphics g){
@@ -56,8 +56,8 @@ public class BoardComponent extends JComponent {
     private void paintPlayers(Graphics g){
 	for (Player player : game.getPlayers()){
 	    int diameter = 22;
-	    int x = player.getPosition().x;
-	    int y = player.getPosition().y;
+	    int x = player.getCurPos().x;
+	    int y = player.getCurPos().y;
 	    g.setColor(Color.RED);
 	    g.drawString("Hej där!", 800, 500);
 	    g.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);

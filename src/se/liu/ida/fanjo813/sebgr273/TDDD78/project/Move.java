@@ -22,7 +22,7 @@ public class Move{
         pos = player.getCurPos();
     }
 
-    public void move(){
+    public void moveRotation(){
         /**Allows the player to move in a direction.*
          * Can max move "steps" steps
          */
@@ -36,6 +36,7 @@ public class Move{
                     flipMethod();
                 }
             }else{
+
                 //listen for player click
                 /*if player clicks on point, check if viable move*/
                 /*if viable move, check if special move*/
@@ -124,10 +125,5 @@ public class Move{
             }
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        Move move = new Move(new Player("Gert", new BoardPosition(0, 0)), new ArrayList<Brick>());
-        move.flipMethod();
     }
 }
