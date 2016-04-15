@@ -27,7 +27,7 @@ public class Move{
          * Can max move "steps" steps
          */
         while(steps < 0){
-            if(onBrick()){
+            if(onBrick(pos)){
                 /*ask player if want to flip brick*/
                 int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
                 "currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
@@ -45,7 +45,12 @@ public class Move{
             }
         }
         /*when steps == 0*/
-        if(onBrick()){
+        if(onBrick(pos)){
+            int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
+                            "currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
+            if (ans == JOptionPane.YES_OPTION){
+                flipMethod();
+            }
             /*ask if player want to flip brick*/
             /*if yes, ask for way*/
             /*else endTurn*/
@@ -54,12 +59,12 @@ public class Move{
 
     private void flipBrick(){
         /*change so that getBrick gets a pos, for nicer code*/
-        Brick brick = getBrick();
+        Brick brick = getBrick(pos);
         switch (brick.getBrickType()){
             case MONEY:
                 break;
             case SSD:
-                /*set winningPlayer to true*/
+                player.canWin();
                 break;
             case STACK:
                 /*curPlayer.setWin, but not winningPlayer*/
@@ -90,18 +95,20 @@ public class Move{
                 options[1]);
         if(ans == JOptionPane.YES_OPTION){
             player.removeMoney(1000);
-            flipBrick();
+            System.out.println("you payed");
+            //flipBrick();
         }else{
             int roll = player.diceThrow();
-            if(roll < 3){
-                flipBrick();
+            if(roll > 3){
+                System.out.println("win");
+                //flipBrick();
             }else{
                 JOptionPane.showMessageDialog(null, "Didn't roll high enough.");
             }
         }
     }
 
-    public boolean onBrick(){
+    public boolean onBrick(Point pos){
         for(Brick brick : brickList){
             if(brick.getBoardPosition().equals(pos)){
                 return true;
@@ -110,7 +117,7 @@ public class Move{
         return false;
     }
 
-    public Brick getBrick(){
+    public Brick getBrick(Point pos){
         for (Brick brick : brickList) {
             if(brick.getBoardPosition().equals(pos)){
                 return brick;

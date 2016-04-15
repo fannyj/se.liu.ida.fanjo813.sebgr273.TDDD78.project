@@ -39,10 +39,6 @@ public class GameEngine extends Bank {
         curPlayer = playerList.get(curPlayerIndex);
     }
 
-    private void onWinningPiece(Player player){
-        player.setWin();
-    }
-
     private void endTurn() {
         if (curPlayerIndex < playerList.size()) {
             curPlayerIndex++;
