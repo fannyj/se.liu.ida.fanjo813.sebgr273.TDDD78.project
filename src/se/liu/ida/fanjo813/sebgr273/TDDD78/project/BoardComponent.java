@@ -18,6 +18,7 @@ public class BoardComponent extends JComponent {
         g.drawImage(image, 0, 0, this);
 	paintPaths(g);
 	paintPositions(g);
+        /*kommentar test*/
     }
 
 
@@ -40,13 +41,13 @@ public class BoardComponent extends JComponent {
     }
 
     private void paintPaths(Graphics g){
-	for (Path path : board.getPaths()){
-	    Position p1 = path.getPosition1();
-	    Position p2 = path.getPosition2();
-	    // Borde swicha på olika PathType, kanske olika färg/streck...
-	    g.setColor(Color.ORANGE);
-	    g.drawLine(p1.x, p1.y, p2.x, p2.y);
-	}
+        for (Path path : board.getPaths()){
+            Position p1 = path.getPosition1();
+            Position p2 = path.getPosition2();
+            // Borde swicha på olika PathType, kanske olika färg/streck...
+            g.setColor(Color.ORANGE);
+            g.drawLine(p1.x, p1.y, p2.x, p2.y);
+        }
     }
 
 
