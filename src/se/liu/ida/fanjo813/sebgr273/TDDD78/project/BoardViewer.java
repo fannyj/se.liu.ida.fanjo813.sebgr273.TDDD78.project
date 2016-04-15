@@ -11,7 +11,7 @@ import java.awt.image.*;
 import java.io.*;
 
 public class BoardViewer extends JFrame{
-    private GameBoard board;
+    private GameEngine game;
     private BoardComponent boardComponent;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
@@ -119,7 +119,7 @@ public class BoardViewer extends JFrame{
 	    }
 	});
 
-	//menuBar.add(Box.createHorizontalGlue());
+	menuBar.add(Box.createHorizontalGlue());
 	menuBar.add(gameMenu);
 	menuBar.add(optionMenu);
 	myJFrame.setJMenuBar(menuBar);

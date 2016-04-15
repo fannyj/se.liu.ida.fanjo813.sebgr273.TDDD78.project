@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestClass {
-    private static final GameBoard board = new GameBoard();
+//    private static final GameBoard board = new GameBoard();
+    private static final GameEngine game = new GameEngine(5000);
 
     public static final void main(String[] args) {
-        Player playah = new Player("Gert", new BoardPosition(0, 0));
-        System.out.println(playah.toString());
-        //BoardViewer boardViewer = new BoardViewer(board);
-        List<Player> playerList = new ArrayList<Player>();
-        playerList.add(playah);
-        GameEngine engine = new GameEngine(10000, playerList);
+//        Player playah = new Player("Gert", new BoardPosition(0, 0));
+//        System.out.println(playah.toString());
+        game.play();
+        BoardViewer boardViewer = new BoardViewer(game);
     }
 }
