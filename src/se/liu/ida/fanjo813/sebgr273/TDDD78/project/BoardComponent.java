@@ -16,9 +16,9 @@ public class BoardComponent extends JComponent {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
-	paintPaths(g);
-	paintPositions(g);
-        /*kommentar test*/
+        paintPaths(g);
+        paintPositions(g);
+
     }
 
 
