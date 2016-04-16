@@ -1,6 +1,9 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+import java.awt.*;
+
 import java.util.*;
+import java.util.List;
 
 public class GameEngine extends Bank {
     private List<Player> players;
@@ -31,9 +34,37 @@ public class GameEngine extends Bank {
 	 }*/
     }
 
+
     public void setPlayers(){
-	Player player = new Player("Gert", board.getPosition(1));
-	players.add(player);
+	for (int i = 0; i < 4; i++){
+	    String name = "";
+	    Position pos = board.getPosition(0);
+	    Color color = Color.BLACK;
+	    switch (i){
+		case 0:
+		    name = "Gert";
+		    pos = board.getPosition(1);
+		    color = Color.RED;
+		    break;
+		case 1:
+		    name = "Sebastian";
+		    pos = board.getPosition(5);
+		    color = Color.BLUE;
+		    break;
+		case 2:
+		    name = "Fanny";
+		    pos = board.getPosition(14);
+		    color = Color.MAGENTA;
+		    break;
+		case 3:
+		    name = "Bert";
+		    pos = board.getPosition(7);
+		    color = Color.LIGHT_GRAY;
+		    break;
+	    }
+	    Player player = new Player(name, pos, color);
+	    players.add(player);
+	}
     }
 
     private void standardRotation(){

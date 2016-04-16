@@ -18,13 +18,14 @@ public class BoardComponent extends JComponent {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
-	paintPaths(g);
-	paintPositions(g);
-	paintPlayers(g);
+	Graphics2D g2 = (Graphics2D) g;
+	paintPaths(g2);
+	paintPositions(g2);
+	paintPlayers(g2);
     }
 
 
-    private void paintPositions(Graphics g){
+    private void paintPositions(Graphics2D g2){
 	for (Position pos : game.getBoard().getPositions()){
 	    int x = pos.x;
 	    int y = pos.y;
@@ -37,30 +38,32 @@ public class BoardComponent extends JComponent {
             	diameter = 25;
             	color = Color.pink;
 	    }
-	    g.setColor(color);
-	    g.fillOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
+	    g2.setColor(color);
+	    g2.fillOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
 	}
     }
 
-    private void paintPaths(Graphics g){
+    private void paintPaths(Graphics2D g2){
 	for (Path path : game.getBoard().getPaths()){
 	    Position p1 = path.getPosition1();
 	    Position p2 = path.getPosition2();
 	    // Borde swicha på olika PathType, kanske olika färg/streck...
-	    g.setColor(Color.ORANGE);
-	    g.drawLine(p1.x, p1.y, p2.x, p2.y);
+	    g2.setStroke(new BasicStroke(3));
+	    g2.setColor(Color.ORANGE);
+	    g2.drawLine(p1.x, p1.y, p2.x, p2.y);
 	}
     }
 
 
-    private void paintPlayers(Graphics g){
+    private void paintPlayers(Graphics2D g2){
 	for (Player player : game.getPlayers()){
 	    int diameter = 22;
 	    int x = player.getPosition().x;
 	    int y = player.getPosition().y;
-	    g.setColor(Color.RED);
-	    g.drawString("Hej där!", 800, 500);
-	    g.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
+	    g2.setColor(player.getColor());
+	    g2.setStroke(new BasicStroke(4));
+	    g2.drawString("Hej där!", 800, 500);
+	    g2.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
 	}
     }
 
