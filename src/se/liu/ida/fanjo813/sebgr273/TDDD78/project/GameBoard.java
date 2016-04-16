@@ -21,10 +21,30 @@ public class GameBoard {
     }
 
     public List<Position> possibleMoves(Position startPos, int steps){
+	List<Position> moves = new ArrayList<Position>(possibleMoves(startPos, steps, paths));
+	if (startPos.isCity()){
+	    moves.remove(startPos);
+	}
+	return moves;
+    }
+
+    private List<Position> possibleMoves(Position curPos, int steps, List<Path> remaining){
+	List<Path> rest = new ArrayList<Path>(remaining);
 	List<Position> moves = new ArrayList<Position>();
-	/*
-	
-	 */
+	if (steps == 0){ //Rekursivt basfall
+	    moves.add(curPos);
+	    return moves;
+	}
+	if (curPos.isCity()){ //Städer ska läggas till i listan och ska fortsätta gå
+	    moves.add(curPos);
+	}
+	for (Path path : remaining){
+	    if (path.hasPosition(curPos)){ //Hittade en väg att gå
+		rest.remove(path);
+		moves.addAll(possibleMoves(path.otherPosition(curPos), steps-1, rest));
+	    }
+	}
+
 	return moves;
     }
 

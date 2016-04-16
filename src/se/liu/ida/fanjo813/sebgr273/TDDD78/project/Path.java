@@ -11,7 +11,6 @@ public class Path {
     private int costFrom2To1;
     private int alternativeCost; //1 eller 6 på tärningen. Om du ej har pengar.
 
-
     public Path(Position position1, Position position2, PathType pathType, int costFrom1To2, int costFrom2To1, int alternativeCost) {
         this.position1 = position1;
         this.position2 = position2;
@@ -27,6 +26,21 @@ public class Path {
 
     public Position getPosition2() {
 	return position2;
+    }
+
+    public Position otherPosition(Position pos){
+	//Använd hasPosition innan. Om pos inte är en av pathens positions borde det bli exeption
+	if (pos == position1){
+	    return position2;
+	}
+	return position1;
+    }
+
+    public boolean hasPosition(Position pos){
+	if (pos == position1 || pos == position2){
+	    return true;
+	}
+	return false;
     }
 
     public PathType getPathType() {

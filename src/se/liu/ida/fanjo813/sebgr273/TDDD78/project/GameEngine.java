@@ -34,6 +34,10 @@ public class GameEngine extends Bank {
 	 }*/
     }
 
+    public List<Position> testPossoibleMoves(Position startPos){
+	int steps = 5;
+	return board.possibleMoves(startPos, steps);
+    }
 
     public void setPlayers(){
 	for (int i = 0; i < 4; i++){

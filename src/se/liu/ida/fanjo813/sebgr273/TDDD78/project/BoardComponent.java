@@ -22,6 +22,7 @@ public class BoardComponent extends JComponent {
 	paintPaths(g2);
 	paintPositions(g2);
 	paintPlayers(g2);
+	paintPossibleMoves(g2);
     }
 
 
@@ -67,9 +68,15 @@ public class BoardComponent extends JComponent {
 	}
     }
 
-    /*
-    Hitta på ett sätt vi ska precentera spelaren.
-     */
-
+    private void paintPossibleMoves(Graphics2D g2){ //För att testa possibleMoves
+	for (Position position : game.testPossoibleMoves(game.getPlayers().get(1).getPosition())){
+	    int diameter = 30;
+	    int x = position.x;
+	    int y = position.y;
+	    g2.setColor(Color.WHITE);
+	    g2.setStroke(new BasicStroke(4));
+	    g2.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
+	}
+    }
 
 }
