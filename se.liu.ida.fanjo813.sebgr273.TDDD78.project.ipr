@@ -304,6 +304,7 @@
         </option>
         <option name="ignoreClassWithParameterization" value="true" />
         <option name="ignoreThrowables" value="true" />
+        <option name="commentsAreContent" value="true" />
       </inspection_tool>
       <inspection_tool class="EmptyDirectory" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="EmptyInitializer" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -1386,7 +1387,7 @@
         </XML>
       </value>
     </option>
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="TDDD78-v1" />
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
   </component>
   <component name="ProjectDictionaryState">
     <dictionary name="jonkv" />
@@ -1422,7 +1423,7 @@
       <module fileurl="file://$PROJECT_DIR$/se.liu.ida.fanjo813.sebgr273.TDDD78.project.iml" filepath="$PROJECT_DIR$/se.liu.ida.fanjo813.sebgr273.TDDD78.project.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="VcsDirectoryMappings">

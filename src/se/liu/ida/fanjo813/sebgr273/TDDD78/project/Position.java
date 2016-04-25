@@ -21,6 +21,28 @@ public class Position{
         this.isStartPos = isStartPos;
     }
 
+    public boolean isRoughPosition(Point clickPos){
+	    /**returns true if the mouseclick is within the circle*/
+	    double clickX = clickPos.getX();
+	    double clickY = clickPos.getY();
+	    double minX = pos.getX();
+	    double minY = pos.getY();
+	    double maxX = pos.getX();
+	    double maxY = pos.getY();
+
+	    if(this.isCity){
+		    minX -= 10; minY -= 10; maxX += 10; maxY += 10;
+	    } else if (this.isStartPos){
+		    minX -= 12.5; minY -= 12.5; maxX += 12.5; maxY += 12.5;
+	    } else {
+		    minX -= 5; minY -= 5; maxX += 5; maxY += 5;
+	    }
+	    if(clickX <= maxX && clickX >= minX &&
+			    clickY <= maxY && clickY >= minY){
+		    return true;
+	    }
+	    return false;
+    }
 
     public int getId() {
 	return id;

@@ -12,39 +12,39 @@ public class GameBoard {
     private List<Brick> brickList;
 
     public GameBoard(){
-        positions = new ArrayList<Position>();
-	paths = new ArrayList<Path>();
-        players = new ArrayList<Player>();
-        brickList = new ArrayList<Brick>();
-        setupBoard();
+	    positions = new ArrayList<Position>();
+	    paths = new ArrayList<Path>();
+	    players = new ArrayList<Player>();
+	    brickList = new ArrayList<Brick>();
+	    setupBoard();
     }
 
-    public List<Position> possibleMoves(Position startPos, int steps){
-	List<Position> moves = new ArrayList<Position>();
+	public List<Position> possibleMoves(Position startPos, int steps){
+		List<Position> moves = new ArrayList<Position>();
 	/*
 
 	 */
-	return moves;
+		return moves;
     }
 
 
     public void setupBoard(){
-        addPosition(1, 100, 100, SSD, true, "Linköping", false);
-		addPosition(2, 125, 100, EMPTY, false, "", false);
-		addPosition(3, 150, 100, EMPTY, false, "", false);
-		addPosition(4, 175, 100, EMPTY, false, "", false);
-		addPosition(5, 200, 100, SSD, true, "Göteborg", false);
-		addPosition(6, 225, 100, EMPTY, false, "", false);
-		addPosition(7, 250, 100, EMPTY, false, "", false);
-		addPosition(8, 275, 100, EMPTY, false, "", false);
-		addPosition(9, 300, 100, EMPTY, false, "Stockholm", true);
-		addPosition(10, 300, 125, EMPTY, false, "", false);
-		addPosition(11, 300, 150, EMPTY, false, "", false);
-		addPosition(12, 300, 175, EMPTY, false, "", false);
-		addPosition(13, 300, 200, EMPTY, false, "Kiruna", true);
-		addPosition(14, 275, 200, EMPTY, false, "", false);
-		addPosition(15, 250, 200, EMPTY, false, "", false);
-		addPosition(16, 225, 200, EMPTY, false, "", false);
+	    addPosition(1, 100, 100, SSD, true, "Linköping", false);
+	    addPosition(2, 125, 100, EMPTY, false, "", false);
+	    addPosition(3, 150, 100, EMPTY, false, "", false);
+	    addPosition(4, 175, 100, EMPTY, false, "", false);
+	    addPosition(5, 200, 100, SSD, true, "Göteborg", false);
+	    addPosition(6, 225, 100, EMPTY, false, "", false);
+	    addPosition(7, 250, 100, EMPTY, false, "", false);
+	    addPosition(8, 275, 100, EMPTY, false, "", false);
+	    addPosition(9, 300, 100, EMPTY, false, "Stockholm", true);
+	    addPosition(10, 300, 125, EMPTY, false, "", false);
+	    addPosition(11, 300, 150, EMPTY, false, "", false);
+	    addPosition(12, 300, 175, EMPTY, false, "", false);
+	    addPosition(13, 300, 200, EMPTY, false, "Kiruna", true);
+	    addPosition(14, 275, 200, EMPTY, false, "", false);
+	    addPosition(15, 250, 200, EMPTY, false, "", false);
+	    addPosition(16, 225, 200, EMPTY, false, "", false);
 		addPosition(17, 200, 200, SSD, true, "Örebro", false);
 		addPosition(18, 175, 200, EMPTY, false, "", false);
 		addPosition(19, 150, 200, EMPTY, false, "", false);
@@ -96,13 +96,13 @@ public class GameBoard {
     }
 
     private void addPosition(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos){
-    	Position position = new Position(id, xPos, yPos, brick, isCity, cityName, isStartPos);
-    	positions.add(position);
+	    Position position = new Position(id, xPos, yPos, brick, isCity, cityName, isStartPos);
+	    positions.add(position);
     }
 
     private void addPath(int id1, int id2, PathType pathType, int costFrom1To2, int costFrom2To1, int alternativeCost){
-        Path path = new Path(getPosition(id1), getPosition(id2), pathType, costFrom1To2, costFrom2To1, alternativeCost);
-        paths.add(path);
+	    Path path = new Path(getPosition(id1), getPosition(id2), pathType, costFrom1To2, costFrom2To1, alternativeCost);
+	    paths.add(path);
     }
 
     public Position getPosition(int id) {
@@ -112,7 +112,7 @@ public class GameBoard {
                 position = pos;
             }
         }
-	return position;
+	    return position;
     }
 
     public List<Position> getPositions() {

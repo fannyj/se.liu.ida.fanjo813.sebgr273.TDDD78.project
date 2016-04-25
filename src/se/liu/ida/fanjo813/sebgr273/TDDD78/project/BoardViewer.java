@@ -10,7 +10,6 @@ import java.io.*;
 
 public class BoardViewer extends JFrame{
     private GameEngine game;
-    private BoardComponent boardComponent;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
     private BufferedImage image;
@@ -29,12 +28,11 @@ public class BoardViewer extends JFrame{
 
         image = resizeImage();
         myJFrame = new JFrame("Spelet");
-	createMenus();
-	boardComponent = new BoardComponent(image, this.game);
-	myJFrame.add(boardComponent);
-	this.game.addListener(boardComponent);
+	    createMenus();
+	    addBoardComponent();
 
-        myJFrame.setContentPane(boardComponent);
+
+        //myJFrame.setContentPane(game.getBoardComponent());
         myJFrame.setSize(WIDTH, HEIGHT);
 
 
@@ -55,7 +53,9 @@ public class BoardViewer extends JFrame{
     }
 
     private void addBoardComponent(){
-
+	    BoardComponent boardComponent = new BoardComponent(image, this.game);
+	    myJFrame.add(boardComponent);
+	    game.addListener(boardComponent);
     }
 
     private BufferedImage resizeImage() {
