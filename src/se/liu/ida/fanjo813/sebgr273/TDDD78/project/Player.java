@@ -27,7 +27,7 @@ public class Player extends Bank {
 
 
     public Point getCurPos() {
-        return curPos;
+        return curPos.getPos();
     }
 
     public void setCurPos(Position curPos) {
@@ -47,6 +47,6 @@ public class Player extends Bank {
         return playerName
                 + " has " + getAmount()
                 + " dogecoins and is at " +
-                curPos.getX() + ":" + curPos.getY();
+                curPos.getPos().getX() + ":" + curPos.getPos().getY();
     }
 }

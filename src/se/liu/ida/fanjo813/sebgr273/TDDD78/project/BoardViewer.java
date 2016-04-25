@@ -5,8 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.*;
 import java.io.*;
 
@@ -31,15 +29,15 @@ public class BoardViewer extends JFrame{
 
         image = resizeImage();
         myJFrame = new JFrame("Spelet");
-        DefaultClickHandler mouseClickHandler = new DefaultClickHandler();
-        myJFrame.addMouseListener(mouseClickHandler);
+	createMenus();
+	boardComponent = new BoardComponent(image, this.game);
+	myJFrame.add(boardComponent);
+	this.game.addListener(boardComponent);
 
-
-        boardComponent = new BoardComponent(image, this.game);
         myJFrame.setContentPane(boardComponent);
         myJFrame.setSize(WIDTH, HEIGHT);
 
-        createMenus();
+
         myJFrame.setVisible(true);
         myJFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
@@ -54,6 +52,10 @@ public class BoardViewer extends JFrame{
 
     public static boolean getMoveState(){
         return canMove;
+    }
+
+    private void addBoardComponent(){
+
     }
 
     private BufferedImage resizeImage() {
@@ -125,39 +127,4 @@ public class BoardViewer extends JFrame{
 
     }
 
-}
-class DefaultClickHandler implements MouseListener {
-
-    private double x, y;
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Point pos = e.getPoint();
-        x = pos.getX()-8;
-        y = pos.getY()-54;
-    }
-
-    public Point clickPos(){
-        return new Point((int)x, (int)y);
-    }
 }

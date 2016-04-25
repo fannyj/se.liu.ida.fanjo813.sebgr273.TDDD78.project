@@ -13,7 +13,7 @@ public class GameBoard {
 
     public GameBoard(){
         positions = new ArrayList<Position>();
-		paths = new ArrayList<Path>();
+	paths = new ArrayList<Path>();
         players = new ArrayList<Player>();
         brickList = new ArrayList<Brick>();
         setupBoard();

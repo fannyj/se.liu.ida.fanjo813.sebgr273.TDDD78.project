@@ -13,6 +13,7 @@ public class GameEngine extends Bank {
     private int curPlayerIndex;
     private GameBoard board;
     private boolean winCondition;
+    private Collection<BoardListener> boardListeners = new ArrayList();
 
     public GameEngine(int amount) {
         super(amount);
@@ -44,6 +45,10 @@ public class GameEngine extends Bank {
     public void setPlayers(){
         //Player player = new Player("Gert", board.getPosition(1));
         String amount = JOptionPane.showInputDialog(null, "How many players?");
+	if(amount == null){
+	    System.out.println("Pressed exit");
+	    System.exit(0);
+	}
         int amnt = Integer.parseInt(amount);
         for(int i = 0; i < amnt; i++){
             String name = JOptionPane.showInputDialog(null, "Write the name of player " + (i+1) + ":");
@@ -59,11 +64,11 @@ public class GameEngine extends Bank {
     }
 
     private void standardRotation(){
-        curPlayer = players.get(curPlayerIndex);
-        Move move = new Move(curPlayer, board.getBrickList());
+        /*curPlayer = players.get(curPlayerIn);
+        Move move = new Move(curPlayer, boardtBrickList());
         move.moveRotation();
         System.out.println("Start");
-        endTurn();
+        endTurn();*/
     }
 
     private void startGame(){
@@ -89,6 +94,26 @@ public class GameEngine extends Bank {
 
     public Player getCurPlayer(){
         return curPlayer;
+    }
+
+    public void tick(){
+
+	for (Position position : board.getPositions()) {
+	    if(position.getPos().equals(mouseClick)){
+		curPlayer.setCurPos(position);
+	    }
+	}
+	notifyListeners();
+    }
+
+    public void addListener(BoardListener b1){
+	boardListeners.add(b1);
+    }
+
+    private void notifyListeners(){
+	for(BoardListener boardListener : boardListeners){
+	    boardListener.boardChanged();
+	}
     }
 
     private void endTurn() {
