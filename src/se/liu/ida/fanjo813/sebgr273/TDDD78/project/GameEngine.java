@@ -4,21 +4,25 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.Point;
 
+/**
+ * Deals with all the non-graphical stuff of the game*
+ */
 public class GameEngine extends Bank {
     private List<Player> players;
     private Player curPlayer;
     private int curPlayerIndex, steps;
     private GameBoard board;
     private boolean winCondition;
-    private Collection<BoardListener> boardListeners = new ArrayList();
+    private Collection<BoardListener> boardListeners;
 	private List<Brick> brickList;
 
     public GameEngine(int amount) {
         super(amount);
         board = new GameBoard();
-        players = new ArrayList<Player>();
+        players = new ArrayList<>();
+	    boardListeners = new ArrayList<>();
         winCondition = false;
-	    brickList = new ArrayList<Brick>();
+	    brickList = new ArrayList<>();
     }
 
     public void play(){
@@ -30,6 +34,7 @@ public class GameEngine extends Bank {
             standardRotation();
         }
         System.out.println("Someone won");
+	    System.exit(0);
     }
 
     public void setPlayers(){
@@ -53,8 +58,8 @@ public class GameEngine extends Bank {
         curPlayer = players.get(curPlayerIndex);
         Move move = new Move(brickList);
 	    steps = diceThrow();
+	    System.out.println("Start");
 	    moveRotation(move);
-        System.out.println("Start");
         endTurn();
     }
 
@@ -108,9 +113,11 @@ public class GameEngine extends Bank {
 
 	private boolean isPossibleMove(int id1, Position player){
 		Position startPos = null;
+		int i = 1;
 		for (Position position : board.getPositions()) {
 			if(position.getId() == player.getId()){
 				startPos = position;
+				System.out.println("Bajs");
 			}
 		}
 		for (Path path : board.getPaths()){
@@ -127,7 +134,7 @@ public class GameEngine extends Bank {
 
     private void endTurn() {
 	    System.out.println("Slut");
-	    if(curPlayer.getPlayerName().equals("Alex")){
+	    if(curPlayer.canWin() && curPlayer.getCurPos().isStartPos()){
 		    this.winCondition = true;
 	    } else if(curPlayerIndex == players.size()-1){
 		    curPlayerIndex = 0;
