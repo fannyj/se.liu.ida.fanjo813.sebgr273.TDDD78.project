@@ -10,11 +10,11 @@ import java.io.*;
 
 public class BoardViewer extends JFrame{
     private GameEngine game;
-    public static final int WIDTH = 1280;
+	private BufferedImage image;
+	private JFrame myJFrame;
+
+	public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
-    private BufferedImage image;
-    private JFrame myJFrame;
-    private static boolean canMove = false;
 
     public BoardViewer(GameEngine game){
         this.game = game;
@@ -25,31 +25,15 @@ public class BoardViewer extends JFrame{
             e.printStackTrace();
         }
 
-
         image = resizeImage();
         myJFrame = new JFrame("Spelet");
 	    createMenus();
 	    addBoardComponent();
 
-
-        //myJFrame.setContentPane(game.getBoardComponent());
         myJFrame.setSize(WIDTH, HEIGHT);
-
 
         myJFrame.setVisible(true);
         myJFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
-
-    public static void setCanMove(){
-        canMove = true;
-    }
-
-    public static void setCanNotMove(){
-        canMove = false;
-    }
-
-    public static boolean getMoveState(){
-        return canMove;
     }
 
     private void addBoardComponent(){
@@ -59,7 +43,7 @@ public class BoardViewer extends JFrame{
     }
 
     private BufferedImage resizeImage() {
-        int type=0;
+        int type;
         type = image.getType() == 0? BufferedImage.TYPE_INT_ARGB : image.getType();
         BufferedImage resizedImage = new BufferedImage(WIDTH, HEIGHT,type);
         Graphics2D g = resizedImage.createGraphics();
@@ -67,7 +51,6 @@ public class BoardViewer extends JFrame{
         g.dispose();
         return resizedImage;
     }
-
 
     private void createMenus(){
 	final JMenuBar menuBar = new JMenuBar();
@@ -103,28 +86,28 @@ public class BoardViewer extends JFrame{
 		});
 
 */
-	quitItem.addActionListener(new ActionListener() {
-	    @Override public void actionPerformed(final ActionEvent e) {
-		Object[] options = {"Yes", "Cancel"};
-		int optionChosen = JOptionPane.showOptionDialog(null,
-								"Go to main menu?",
-								"Go to main menu",
-								JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE,
-								null,
-								options,
-								options[1]);
-		if (optionChosen == JOptionPane.YES_OPTION){
-		    System.exit(0);
-		}
-	    }
-	});
 
-	menuBar.add(Box.createHorizontalGlue());
-	menuBar.add(gameMenu);
-	menuBar.add(optionMenu);
-	myJFrame.setJMenuBar(menuBar);
+	    quitItem.addActionListener(new ActionListener() {
+		    @Override public void actionPerformed(final ActionEvent e) {
+			    Object[] options = {"Yes", "Cancel"};
+			    int optionChosen = JOptionPane.showOptionDialog(null,
+					    "Go to main menu?",
+					    "Go to main menu",
+					    JOptionPane.YES_NO_OPTION,
+					    JOptionPane.QUESTION_MESSAGE,
+					    null,
+					    options,
+					    options[1]);
+			    if (optionChosen == JOptionPane.YES_OPTION){
+				    System.exit(0);
+			    }
+		    }
+	    });
+
+	    menuBar.add(Box.createHorizontalGlue());
+	    menuBar.add(gameMenu);
+	    menuBar.add(optionMenu);
+	    myJFrame.setJMenuBar(menuBar);
 
     }
-
 }

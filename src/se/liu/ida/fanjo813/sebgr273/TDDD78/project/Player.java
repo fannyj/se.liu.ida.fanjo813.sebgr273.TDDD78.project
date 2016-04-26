@@ -26,8 +26,12 @@ public class Player extends Bank {
     }
 
 
-    public Point getCurPos() {
+    public Point getCurPoint() {
         return curPos.getPos();
+    }
+
+    public Position getCurPos(){
+	    return curPos;
     }
 
     public void setCurPos(Position curPos) {

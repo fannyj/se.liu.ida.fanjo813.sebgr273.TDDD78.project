@@ -7,24 +7,14 @@ import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.BrickType.*;
 
 public class GameBoard {
     private List<Position> positions;
-    private List<Player> players;
     private List<Path> paths;
     private List<Brick> brickList;
 
     public GameBoard(){
-	    positions = new ArrayList<Position>();
-	    paths = new ArrayList<Path>();
-	    players = new ArrayList<Player>();
-	    brickList = new ArrayList<Brick>();
+	    positions = new ArrayList<>();
+	    paths = new ArrayList<>();
+	    brickList = new ArrayList<>();
 	    setupBoard();
-    }
-
-	public List<Position> possibleMoves(Position startPos, int steps){
-		List<Position> moves = new ArrayList<Position>();
-	/*
-
-	 */
-		return moves;
     }
 
 
@@ -57,10 +47,6 @@ public class GameBoard {
 		addPosition(26, 200, 150, EMPTY, false, "", false);
 		addPosition(27, 200, 175, EMPTY, false, "", false);
 
-//        addPosition(98, 700, 300, EMPTY, false, "Kairo", true);
-//        addPosition(99, 700, 150, EMPTY, false, "Tanger", true);
-
-
         addPath(1, 2, PathType.WALK, 0, 0, 0);
         addPath(2, 3, PathType.BOAT, 300, 0, 6);
         addPath(3, 4, PathType.AIRPLANE, 1000, 0, 0);
@@ -89,10 +75,6 @@ public class GameBoard {
 		addPath(25, 26, PathType.WALK, 0, 0, 0);
 		addPath(26, 27, PathType.WALK, 0, 0, 0);
 		addPath(27, 17, PathType.WALK, 0, 0, 0);
-
-//        addPath(99, 3, PathType.WALK, 0, 0, 0);
-//        addPath(98, 4, PathType.WALK, 0, 0, 0);
-
     }
 
     private void addPosition(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos){
@@ -123,11 +105,6 @@ public class GameBoard {
         return paths;
     }
 
-
     public List<Brick> getBrickList() {return brickList;}
-    /*
-    public static BrickType brickAt(int posX, int posY){
-        return brickList.get(0);
-    }
-    */
+
 }

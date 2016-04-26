@@ -65,4 +65,5 @@ public class Position{
     public String getCityName() {
 	return cityName;
     }
+
 }

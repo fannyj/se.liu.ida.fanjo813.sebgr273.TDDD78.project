@@ -7,7 +7,7 @@ import java.awt.Point;
 public class GameEngine extends Bank {
     private List<Player> players;
     private Player curPlayer;
-    private int curPlayerIndex;
+    private int curPlayerIndex, steps;
     private GameBoard board;
     private boolean winCondition;
     private Collection<BoardListener> boardListeners = new ArrayList();
@@ -29,16 +29,7 @@ public class GameEngine extends Bank {
         while(!winCondition){
             standardRotation();
         }
-
         System.out.println("Someone won");
-//	 while(!winningPlayer){
-//	     standardRotation();
-//	 }
-	 /*ska vara kod emellan*/
-	 /*
-	 if(curPlayer.onBrick() == BrickType.SSD || curPlayer.onBrick() == BrickType.STACK){
-	     onWinningPiece(curPlayer);
-	 }*/
     }
 
     public void setPlayers(){
@@ -58,15 +49,11 @@ public class GameEngine extends Bank {
         }
     }
 
-    public void checkClickPos(Point point){
-
-    }
-
     private void standardRotation(){
         curPlayer = players.get(curPlayerIndex);
         Move move = new Move(brickList);
-	    int steps = diceThrow();
-        moveRotation(move, steps);
+	    steps = diceThrow();
+	    moveRotation(move);
         System.out.println("Start");
         endTurn();
     }
@@ -94,12 +81,20 @@ public class GameEngine extends Bank {
 
 	public void tick(Point mouseClick){
 	    for (Position position : board.getPositions()) {
-		    if(position.isRoughPosition(mouseClick)){
+		    if(position.isRoughPosition(mouseClick) &&
+				    isPossibleMove(position.getId(), curPlayer.getCurPos())
+				    && steps > 0){
 			    curPlayer.setCurPos(position);
+			    step();
+			    System.out.println(steps);
 		    }
 	    }
 	    notifyListeners();
     }
+
+	public void step(){
+		steps -= 1;
+	}
 
 	public void addListener(BoardListener b1){
 	boardListeners.add(b1);
@@ -111,48 +106,65 @@ public class GameEngine extends Bank {
 	    }
     }
 
+	private boolean isPossibleMove(int id1, Position player){
+		Position startPos = null;
+		for (Position position : board.getPositions()) {
+			if(position.getId() == player.getId()){
+				startPos = position;
+			}
+		}
+		for (Path path : board.getPaths()){
+			if ((path.getPosition1().equals(startPos) &&
+					path.getPosition2().equals(board.getPosition(id1)))
+					||
+					(path.getPosition1().equals(board.getPosition(id1)) &&
+							path.getPosition2().equals(startPos))){
+				return true;
+			}
+		}
+		return false;
+	}
+
     private void endTurn() {
 	    System.out.println("Slut");
 	    if(curPlayer.getPlayerName().equals("Alex")){
 		    this.winCondition = true;
+	    } else if(curPlayerIndex == players.size()-1){
+		    curPlayerIndex = 0;
 	    } else {
-		    this.curPlayerIndex++;
+		    curPlayerIndex++;
 	    }
     }
 
-	public void moveRotation(Move move, int steps){
-	        /**Allows the player to move in a direction.*
-	         * Can max move "steps" steps
+	public boolean moveRotation(Move move){
+	        /**Checks if the moving player is on a brick*
+	         * and asks if for a action if player is*
 	         */
-		Point curPos = curPlayer.getCurPos();
-		while(steps < 0){
+		Point curPos = curPlayer.getCurPoint();
+		while(steps > 0){
 			if(move.onBrick(curPos)){
 				/*ask player if want to flip brick*/
 				int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
 						"currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
-
 				if(ans == JOptionPane.YES_OPTION){
 					flipMethod(move, curPos);
 				}
-			}else{
-
 			}
 		}
-		/*when steps == 0*/
 		if(move.onBrick(curPos)){
 			int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
 					"currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
 			if (ans == JOptionPane.YES_OPTION){
 				flipMethod(move, curPos);
 			}
-			/*ask if player want to flip brick*/
-			/*if yes, ask for way*/
-			/*else endTurn*/
 		}
+		return false;
 	}
 
 	private void flipBrick(Move move, Point pos){
-		/*change so that getBrick gets a pos, for nicer code*/
+		/**Handles the event when the*
+		 *player wants to flip a brick*
+		 */
 		Brick brick = move.getBrick(pos);
 		switch (brick.getBrickType()){
 			case MONEY:
@@ -173,7 +185,6 @@ public class GameEngine extends Bank {
 			default:
 				break;
 		}
-		/*If the player wants to flip a brick this method handles it*/
 	}
 
 	private void flipMethod(Move move, Point pos){

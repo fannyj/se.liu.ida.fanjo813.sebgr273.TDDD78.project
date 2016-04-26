@@ -6,14 +6,12 @@ import javax.swing.*;
 
 public class BoardComponent extends JComponent implements BoardListener{
     private Image image;
-    private Player player;
     private  GameEngine game = null;
 	private int x, y;
 
     public BoardComponent(Image image, GameEngine game) {
         this.image = image;
 	    this.game = game;
-	    this.player = game.getCurPlayer();
 	    //DefaultClickHandler mouseClickHandler = new DefaultClickHandler();
 	    this.addMouseListener(new MouseListener() {
 		    @Override
@@ -49,9 +47,9 @@ public class BoardComponent extends JComponent implements BoardListener{
 		    }
 	    };
 
-	    final Timer clockTimer = new Timer(400, mouseClick);
-	    clockTimer.setCoalesce(true);
-	    clockTimer.start();
+	    final Timer clickTimer = new Timer(400, mouseClick);
+	    clickTimer.setCoalesce(true);
+	    clickTimer.start();
     }
 
     @Override
@@ -85,7 +83,7 @@ public class BoardComponent extends JComponent implements BoardListener{
 	    for (Path path : game.getBoard().getPaths()){
 		    Position p1 = path.getPosition1();
 		    Position p2 = path.getPosition2();
-		    // Borde swicha på olika PathType, kanske olika färg/streck...
+		    // Borde switcha på olika PathType, kanske olika färg/streck...
 		    g.setColor(Color.ORANGE);
 		    g.drawLine(p1.getPos().x, p1.getPos().y, p2.getPos().x, p2.getPos().y);
 	    }
@@ -94,11 +92,12 @@ public class BoardComponent extends JComponent implements BoardListener{
     private void paintPlayers(Graphics g){
 	    for (Player player : game.getPlayers()){
 		    int diameter = 22;
-		    int x = player.getCurPos().x;
-		    int y = player.getCurPos().y;
+		    int x = player.getCurPoint().x;
+		    int y = player.getCurPoint().y;
 		    g.setColor(Color.RED);
-		    g.drawString("Hej där!", 800, 500);
 		    g.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
+		    g.setColor(Color.BLACK);
+		    g.drawString(game.getCurPlayer().getPlayerName(), 800, 500);
 	    }
     }
 
