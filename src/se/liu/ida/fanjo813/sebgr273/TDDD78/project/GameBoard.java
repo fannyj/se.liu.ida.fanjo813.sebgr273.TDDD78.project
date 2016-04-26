@@ -80,6 +80,7 @@ public class GameBoard {
     private void addPosition(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos){
 	    Position position = new Position(id, xPos, yPos, brick, isCity, cityName, isStartPos);
 	    positions.add(position);
+	    addBrick(brick, position);
     }
 
     private void addPath(int id1, int id2, PathType pathType, int costFrom1To2, int costFrom2To1, int alternativeCost){
@@ -96,6 +97,12 @@ public class GameBoard {
         }
 	    return position;
     }
+
+	private void addBrick(BrickType brickType, Position position){
+		if(!brickType.equals(EMPTY)){
+			brickList.add(new Brick(position.getPos(), brickType));
+		}
+	}
 
     public List<Position> getPositions() {
 	return positions;

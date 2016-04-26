@@ -9,7 +9,7 @@ public class BoardComponent extends JComponent implements BoardListener{
     private  GameEngine game = null;
 	private int x, y;
 
-    public BoardComponent(Image image, GameEngine game) {
+    public BoardComponent(Image image, final GameEngine game) {
         this.image = image;
 	    this.game = game;
 	    //DefaultClickHandler mouseClickHandler = new DefaultClickHandler();
@@ -97,7 +97,8 @@ public class BoardComponent extends JComponent implements BoardListener{
 		    g.setColor(Color.RED);
 		    g.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
 		    g.setColor(Color.BLACK);
-		    g.drawString(game.getCurPlayer().getPlayerName(), 800, 500);
+		    g.drawString(game.getCurPlayer().getPlayerName(), 800, 100);
+		    g.drawString(String.valueOf(game.getCurPlayer().getAmount()), 800, 115);
 	    }
     }
 

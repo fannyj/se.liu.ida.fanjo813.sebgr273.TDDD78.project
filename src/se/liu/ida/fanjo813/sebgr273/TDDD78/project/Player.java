@@ -1,7 +1,5 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
-import sun.java2d.loops.GraphicsPrimitiveMgr;
-
 import java.awt.Point;
 
 public class Player extends Bank {
@@ -10,7 +8,7 @@ public class Player extends Bank {
     private Position curPos;
 
     public Player(String name, Position position) {
-        super(4998);
+        super(5000);
         playerName = name;
         curPos = position;
     }

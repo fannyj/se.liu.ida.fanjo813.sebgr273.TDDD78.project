@@ -59,7 +59,7 @@ public class Position{
     public boolean isStartPos(){return isStartPos;}
 
     public Point getPos(){
-	return pos;
+		return pos;
     }
 
     public String getCityName() {

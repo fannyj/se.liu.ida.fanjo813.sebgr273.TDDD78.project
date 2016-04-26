@@ -15,6 +15,7 @@ public class GameEngine extends Bank {
     private boolean winCondition;
     private Collection<BoardListener> boardListeners;
 	private List<Brick> brickList;
+	private boolean end;
 
     public GameEngine(int amount) {
         super(amount);
@@ -22,7 +23,8 @@ public class GameEngine extends Bank {
         players = new ArrayList<>();
 	    boardListeners = new ArrayList<>();
         winCondition = false;
-	    brickList = new ArrayList<>();
+	    brickList = board.getBrickList();
+	    end = false;
     }
 
     public void play(){
@@ -55,12 +57,14 @@ public class GameEngine extends Bank {
     }
 
     private void standardRotation(){
+	    end = false;
         curPlayer = players.get(curPlayerIndex);
-        Move move = new Move(brickList);
 	    steps = diceThrow();
 	    System.out.println("Start");
-	    moveRotation(move);
-        endTurn();
+	    while(steps > 0){
+
+	    }
+	    endTurn();
     }
 
     private void startGame(){
@@ -73,7 +77,7 @@ public class GameEngine extends Bank {
     }
 
     public GameBoard getBoard(){
-	return board;
+		return board;
     }
 
     public List<Player> getPlayers(){
@@ -91,6 +95,7 @@ public class GameEngine extends Bank {
 				    && steps > 0){
 			    curPlayer.setCurPos(position);
 			    step();
+			    moveRotation();
 			    System.out.println(steps);
 		    }
 	    }
@@ -111,23 +116,96 @@ public class GameEngine extends Bank {
 	    }
     }
 
-	private boolean isPossibleMove(int id1, Position player){
+	private boolean isPossibleMove(int nextPos, Position playerPos){
 		Position startPos = null;
-		int i = 1;
 		for (Position position : board.getPositions()) {
-			if(position.getId() == player.getId()){
+			if(position.getId() == playerPos.getId()){
 				startPos = position;
-				System.out.println("Bajs");
 			}
 		}
 		for (Path path : board.getPaths()){
 			if ((path.getPosition1().equals(startPos) &&
-					path.getPosition2().equals(board.getPosition(id1)))
+					path.getPosition2().equals(board.getPosition(nextPos)))
 					||
-					(path.getPosition1().equals(board.getPosition(id1)) &&
+					(path.getPosition1().equals(board.getPosition(nextPos)) &&
 							path.getPosition2().equals(startPos))){
+				/*if(isSpecialPath(path)){
+					return handleSpecialPath(path, playerPos);
+				} else {
+					return true;
+				}*/
 				return true;
 			}
+		}
+		return false;
+	}
+
+	public boolean isSpecialPath(Path curPath){
+		List<Path> pathList = board.getPaths();
+		for (Path path : pathList) {
+			if (path.equals(curPath) &&
+				(path.getPathType().equals(PathType.AIRPLANE)
+				||
+				path.getPathType().equals(PathType.BOAT))){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean handleSpecialPath(Path path, Position playerPos){
+		int cost = 0;
+		int altCost = 0;
+
+		switch(path.getPathType()){
+			case AIRPLANE:
+				if(path.getPosition1().equals(playerPos)){
+					cost = path.getCostFrom1To2();
+				} else if(path.getPosition2().equals(playerPos)){
+					cost = path.getCostFrom2To1();
+				}
+				break;
+			case BOAT:
+				if(path.getPosition1().equals(playerPos)){
+					cost = path.getCostFrom1To2();
+					altCost = path.getAlternativeCost();
+				} else if (path.getPosition2().equals(playerPos)){
+					cost = path.getCostFrom2To1();
+					altCost = path.getAlternativeCost();
+				}
+				break;
+			case WALK:
+			default:
+				break;
+		}
+		Object[] options = {
+				"Pay for it",
+				"Roll for it"
+		};
+		int opt = JOptionPane.showConfirmDialog(null,
+				"It`s a special path, do you want to walk it?",
+				"Special path", JOptionPane.YES_NO_OPTION);
+		if(opt == 0) {
+			int ans = JOptionPane.showOptionDialog(null,
+					"How do you want to pay for it?",
+					"Paying",
+					JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					options,
+					options[1]);
+
+			if (ans == 0) {
+				curPlayer.removeMoney(cost);
+				return true;
+			} else if (ans == 1) {
+				int roll = diceThrow();
+				if (roll == altCost){
+					return true;
+				}
+			}
+		} else {
+			return false;
 		}
 		return false;
 	}
@@ -143,36 +221,39 @@ public class GameEngine extends Bank {
 	    }
     }
 
-	public boolean moveRotation(Move move){
+	public void moveRotation(){
 	        /**Checks if the moving player is on a brick*
 	         * and asks if for a action if player is*
 	         */
 		Point curPos = curPlayer.getCurPoint();
-		while(steps > 0){
-			if(move.onBrick(curPos)){
-				/*ask player if want to flip brick*/
+		System.out.println(curPos);
+		/*while(steps >= 0){
+			if(onBrick(curPos) && !flip){
+				System.out.println("Bajs");
+				//ask player if want to flip brick
 				int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
 						"currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
+				flip = true;
 				if(ans == JOptionPane.YES_OPTION){
-					flipMethod(move, curPos);
+					flipMethod(curPos);
 				}
 			}
-		}
-		if(move.onBrick(curPos)){
+		}*/
+		if(onBrick(curPos)){
 			int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
 					"currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
 			if (ans == JOptionPane.YES_OPTION){
-				flipMethod(move, curPos);
+				flipMethod(curPos);
 			}
 		}
-		return false;
 	}
 
-	private void flipBrick(Move move, Point pos){
+	private void flipBrick(Point pos){
 		/**Handles the event when the*
 		 *player wants to flip a brick*
 		 */
-		Brick brick = move.getBrick(pos);
+		Brick brick = getBrick(pos);
+		assert brick != null;
 		switch (brick.getBrickType()){
 			case MONEY:
 				break;
@@ -194,7 +275,7 @@ public class GameEngine extends Bank {
 		}
 	}
 
-	private void flipMethod(Move move, Point pos){
+	private void flipMethod(Point pos){
 		Object[] options = {
 				"Pay for it",
 				"Roll for it"
@@ -210,15 +291,33 @@ public class GameEngine extends Bank {
 		if(ans == JOptionPane.YES_OPTION){
 			curPlayer.removeMoney(1000);
 			System.out.println("you payed");
-			flipBrick(move, pos);
+			flipBrick(pos);
 		}else{
 			int roll = curPlayer.diceThrow();
 			if(roll > 3){
 				System.out.println("win");
-				flipBrick(move, pos);
+				flipBrick(pos);
 			}else{
 				JOptionPane.showMessageDialog(null, "Didn't roll high enough.");
 			}
 		}
+	}
+
+	private boolean onBrick(Point pos){
+		for (Brick brick : brickList) {
+			if (brick.getBoardPosition().equals(pos)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private Brick getBrick(Point pos) {
+		for (Brick brick : brickList) {
+			if(brick.getBoardPosition().equals(pos)){
+				return brick;
+			}
+		}
+		return null;
 	}
 }
