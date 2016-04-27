@@ -25,18 +25,12 @@ public class GameEngine extends Bank {
         winCondition = false;
 	    brickList = board.getBrickList();
 	    end = false;
+	    steps = 1;
     }
 
     public void play(){
-
         setPlayers();
         startGame();
-
-        while(!winCondition){
-            standardRotation();
-        }
-        System.out.println("Someone won");
-	    System.exit(0);
     }
 
     public void setPlayers(){
@@ -56,15 +50,10 @@ public class GameEngine extends Bank {
         }
     }
 
-    private void standardRotation(){
-	    end = false;
+    private void nextRound(){
         curPlayer = players.get(curPlayerIndex);
 	    steps = diceThrow();
 	    System.out.println("Start");
-	    while(steps > 0){
-
-	    }
-	    endTurn();
     }
 
     private void startGame(){
@@ -97,6 +86,8 @@ public class GameEngine extends Bank {
 			    step();
 			    moveRotation();
 			    System.out.println(steps);
+		    } else if (steps == 0){
+			    endTurn();
 		    }
 	    }
 	    notifyListeners();
@@ -216,8 +207,10 @@ public class GameEngine extends Bank {
 		    this.winCondition = true;
 	    } else if(curPlayerIndex == players.size()-1){
 		    curPlayerIndex = 0;
+		    nextRound();
 	    } else {
 		    curPlayerIndex++;
+		    nextRound();
 	    }
     }
 
@@ -228,12 +221,11 @@ public class GameEngine extends Bank {
 		Point curPos = curPlayer.getCurPoint();
 		System.out.println(curPos);
 		/*while(steps >= 0){
-			if(onBrick(curPos) && !flip){
+			if(onBrick(curPos)){
 				System.out.println("Bajs");
 				//ask player if want to flip brick
 				int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
 						"currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
-				flip = true;
 				if(ans == JOptionPane.YES_OPTION){
 					flipMethod(curPos);
 				}
