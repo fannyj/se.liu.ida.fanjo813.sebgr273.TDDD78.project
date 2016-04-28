@@ -1,10 +1,10 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Position{
-    private int id;
+	public static final double STARTRADIUS = 12.5;
+	private int id;
     private BrickType brick; //Bara city´s kan ha bricks. Alla andra är EMPTY
     private boolean isCity;
     private boolean isStartPos;
@@ -31,11 +31,14 @@ public class Position{
 	    double maxY = pos.getY();
 
 	    if(this.isCity){
-		    minX -= 10; minY -= 10; maxX += 10; maxY += 10;
+		    minX -= 10; minY -= 10; maxX += 10;
+		    maxY += 10;
 	    } else if (this.isStartPos){
-		    minX -= 12.5; minY -= 12.5; maxX += 12.5; maxY += 12.5;
+		    minX -= STARTRADIUS; minY -= STARTRADIUS; maxX += STARTRADIUS;
+		    maxY += STARTRADIUS;
 	    } else {
-		    minX -= 5; minY -= 5; maxX += 5; maxY += 5;
+		    minX -= 5; minY -= 5; maxX += 5;
+		    maxY += 5;
 	    }
 	    if(clickX <= maxX && clickX >= minX &&
 			    clickY <= maxY && clickY >= minY){
@@ -52,11 +55,11 @@ public class Position{
 	return brick;
     }
 
-    public boolean isCity() {
-	return isCity;
+    public boolean posIsCity() {
+	    return isCity;
     }
 
-    public boolean isStartPos(){return isStartPos;}
+    public boolean posIsStart(){return isStartPos;}
 
     public Point getPos(){
 		return pos;

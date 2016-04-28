@@ -9,4 +9,8 @@ public enum MoneyType {
     MoneyType(final int amount){
         this.amount = amount;
     }
+
+    public static MoneyType getRandom() {
+        return values()[(int) (Math.random() * values().length)];
+    }
 }

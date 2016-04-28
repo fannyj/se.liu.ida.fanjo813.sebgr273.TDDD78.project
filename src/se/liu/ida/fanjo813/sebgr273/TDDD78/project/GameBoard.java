@@ -21,7 +21,7 @@ public class GameBoard {
     public void setupBoard(){
 	    addPosition(1, 100, 100, SSD, true, "Linköping", false);
 	    addPosition(2, 125, 100, EMPTY, false, "", false);
-	    addPosition(3, 150, 100, EMPTY, false, "", false);
+	    addPosition(3, 150, 100, MONEY, false, "", false);
 	    addPosition(4, 175, 100, EMPTY, false, "", false);
 	    addPosition(5, 200, 100, SSD, true, "Göteborg", false);
 	    addPosition(6, 225, 100, EMPTY, false, "", false);
@@ -99,13 +99,19 @@ public class GameBoard {
     }
 
 	private void addBrick(BrickType brickType, Position position){
+		if (brickType.equals(MONEY)){
+			MoneyType moneyType = MoneyType.getRandom();
+			Brick brick = new Brick(position.getPos(), brickType);
+			brick.setMoney(new Money(moneyType.amount, moneyType));
+			brickList.add(brick);
+		}
 		if(!brickType.equals(EMPTY)){
 			brickList.add(new Brick(position.getPos(), brickType));
 		}
 	}
 
-    public List<Position> getPositions() {
-	return positions;
+    public Iterable<Position> getPositions() {
+	    return positions;
     }
 
     public List<Path> getPaths() {

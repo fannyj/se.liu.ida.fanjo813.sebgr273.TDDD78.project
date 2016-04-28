@@ -1420,10 +1420,10 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/se.liu.ida.fanjo813.sebgr273.TDDD78.project.iml" filepath="$PROJECT_DIR$/se.liu.ida.fanjo813.sebgr273.TDDD78.project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/se.liu.ida.fanjo813.sebgr273.tddd78.project.iml" filepath="$PROJECT_DIR$/se.liu.ida.fanjo813.sebgr273.tddd78.project.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="VcsDirectoryMappings">

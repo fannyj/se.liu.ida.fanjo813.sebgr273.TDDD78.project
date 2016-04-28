@@ -15,7 +15,6 @@ public class GameEngine extends Bank {
     private boolean winCondition;
     private Collection<BoardListener> boardListeners;
 	private List<Brick> brickList;
-	private boolean end;
 
     public GameEngine(int amount) {
         super(amount);
@@ -24,8 +23,8 @@ public class GameEngine extends Bank {
 	    boardListeners = new ArrayList<>();
         winCondition = false;
 	    brickList = board.getBrickList();
-	    end = false;
 	    steps = 1;
+	    curPlayer = null;
     }
 
     public void play(){
@@ -62,6 +61,7 @@ public class GameEngine extends Bank {
     }
 
     private int diceThrow(){
+	    /*6.0 is the multiplier for the random nr*/
         return (int) (6.0 * Math.random()) + 1;
     }
 
@@ -69,7 +69,7 @@ public class GameEngine extends Bank {
 		return board;
     }
 
-    public List<Player> getPlayers(){
+    public Iterable<Player> getPlayers(){
         return players;
     }
 
@@ -203,7 +203,7 @@ public class GameEngine extends Bank {
 
     private void endTurn() {
 	    System.out.println("Slut");
-	    if(curPlayer.canWin() && curPlayer.getCurPos().isStartPos()){
+	    if(curPlayer.canWin() && curPlayer.getCurPos().posIsStart()){
 		    this.winCondition = true;
 	    } else if(curPlayerIndex == players.size()-1){
 		    curPlayerIndex = 0;
@@ -220,17 +220,6 @@ public class GameEngine extends Bank {
 	         */
 		Point curPos = curPlayer.getCurPoint();
 		System.out.println(curPos);
-		/*while(steps >= 0){
-			if(onBrick(curPos)){
-				System.out.println("Bajs");
-				//ask player if want to flip brick
-				int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
-						"currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
-				if(ans == JOptionPane.YES_OPTION){
-					flipMethod(curPos);
-				}
-			}
-		}*/
 		if(onBrick(curPos)){
 			int ans = JOptionPane.showConfirmDialog(null, "Do you want to flip the marker you're\n" +
 					"currently on?", "Flip brick?", JOptionPane.YES_NO_OPTION);
@@ -248,6 +237,7 @@ public class GameEngine extends Bank {
 		assert brick != null;
 		switch (brick.getBrickType()){
 			case MONEY:
+				curPlayer.addMoney(brick.getMoney().getAmount());
 				break;
 			case SSD:
 				curPlayer.canWin();

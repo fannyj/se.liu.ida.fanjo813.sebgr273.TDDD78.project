@@ -5,10 +5,12 @@ import java.awt.Point;
 public class Brick {
     private Point boardPosition;
     private BrickType brickType;
+	private Money money;
 
     public Brick(Point boardPosition, BrickType brickType) {
         this.boardPosition = boardPosition;
         this.brickType = brickType;
+	    money = null;
     }
 
     public Point getBoardPosition() {
@@ -26,4 +28,12 @@ public class Brick {
     public void setBrickType(BrickType brickType) {
         this.brickType = brickType;
     }
+
+	public Money getMoney() {
+		return money;
+	}
+
+	public void setMoney(Money money) {
+		this.money = money;
+	}
 }

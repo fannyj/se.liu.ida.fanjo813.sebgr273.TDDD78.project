@@ -30,14 +30,14 @@ public class Path {
 
     public Position otherPosition(Position pos){
 	//Använd hasPosition innan. Om pos inte är en av pathens positions borde det bli exeption
-	if (pos == position1){
+	if (pos.equals(position1)){
 	    return position2;
 	}
 	return position1;
     }
 
     public boolean hasPosition(Position pos){
-	if (pos == position1 || pos == position2){
+	if (pos.equals(position1) || pos.equals(position2)){
 	    return true;
 	}
 	return false;

@@ -5,7 +5,13 @@ import java.awt.*;
 import javax.swing.*;
 
 public class BoardComponent extends JComponent implements BoardListener{
-    private Image image;
+	public static final int CITYDIAMETER = 20;
+	public static final int STARTRADIUS = 25;
+	public static final int PLAYERDIAMETER = 22;
+	public static final int PLAYERXPOS = 800;
+	public static final int AMOUNTYPOS = 115;
+
+	private Image image;
     private  GameEngine game = null;
 	private int x, y;
 
@@ -67,11 +73,11 @@ public class BoardComponent extends JComponent implements BoardListener{
 		    int y = pos.getPos().y;
 		    Color color = Color.GREEN;
 		    int diameter = 10;
-		    if (pos.isCity()){
-			    diameter = 20;
+		    if (pos.posIsCity()){
+			    diameter = CITYDIAMETER;
 			    color = Color.YELLOW;
-		    } else if (pos.isStartPos()) {
-			    diameter = 25;
+		    } else if (pos.posIsStart()) {
+			    diameter = STARTRADIUS;
 			    color = Color.pink;
 		    }
 		    g.setColor(color);
@@ -84,21 +90,34 @@ public class BoardComponent extends JComponent implements BoardListener{
 		    Position p1 = path.getPosition1();
 		    Position p2 = path.getPosition2();
 		    // Borde switcha på olika PathType, kanske olika färg/streck...
-		    g.setColor(Color.ORANGE);
+		    switch (path.getPathType()){
+			    case AIRPLANE:
+				    g.setColor(Color.MAGENTA);
+				    break;
+			    case WALK:
+				    g.setColor(Color.ORANGE);
+				    break;
+			    case BOAT:
+				    g.setColor(Color.RED);
+				    break;
+			    default:
+				    break;
+		    }
+
 		    g.drawLine(p1.getPos().x, p1.getPos().y, p2.getPos().x, p2.getPos().y);
 	    }
     }
 
     private void paintPlayers(Graphics g){
 	    for (Player player : game.getPlayers()){
-		    int diameter = 22;
+		    int diameter = PLAYERDIAMETER;
 		    int x = player.getCurPoint().x;
 		    int y = player.getCurPoint().y;
 		    g.setColor(Color.RED);
 		    g.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
 		    g.setColor(Color.BLACK);
-		    g.drawString(game.getCurPlayer().getPlayerName(), 800, 100);
-		    g.drawString(String.valueOf(game.getCurPlayer().getAmount()), 800, 115);
+		    g.drawString(game.getCurPlayer().getPlayerName(), PLAYERXPOS, 100);
+		    g.drawString(String.valueOf(game.getCurPlayer().getAmount()), PLAYERXPOS, AMOUNTYPOS);
 	    }
     }
 
