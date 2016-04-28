@@ -1,15 +1,17 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+import java.awt.Point;
+
 public class Brick {
-    private BoardPosition boardPosition;
+    private Point boardPosition;
     private BrickType brickType;
 
-    public Brick(BoardPosition boardPosition, BrickType brickType) {
+    public Brick(Point boardPosition, BrickType brickType) {
         this.boardPosition = boardPosition;
         this.brickType = brickType;
     }
 
-    public BoardPosition getBoardPosition() {
+    public Point getBoardPosition() {
         return boardPosition;
     }
 

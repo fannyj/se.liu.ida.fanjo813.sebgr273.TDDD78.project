@@ -7,64 +7,34 @@ import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.BrickType.*;
 
 public class GameBoard {
     private List<Position> positions;
-    private List<Player> players;
     private List<Path> paths;
     private List<Brick> brickList;
 
     public GameBoard(){
-        positions = new ArrayList<Position>();
-		paths = new ArrayList<Path>();
-        players = new ArrayList<Player>();
-        brickList = new ArrayList<Brick>();
-        setupBoard();
-    }
-
-    public List<Position> possibleMoves(Position startPos, int steps){
-	List<Position> moves = new ArrayList<Position>(possibleMoves(startPos, steps, paths));
-	if (startPos.isCity()){
-	    moves.remove(startPos);
-	}
-	return moves;
-    }
-
-    private List<Position> possibleMoves(Position curPos, int steps, List<Path> remaining){
-	List<Path> rest = new ArrayList<Path>(remaining);
-	List<Position> moves = new ArrayList<Position>();
-	if (steps == 0){ //Rekursivt basfall
-	    moves.add(curPos);
-	    return moves;
-	}
-	if (curPos.isCity()){ //Städer ska läggas till i listan och ska fortsätta gå
-	    moves.add(curPos);
-	}
-	for (Path path : remaining){
-	    if (path.hasPosition(curPos)){ //Hittade en väg att gå
-		rest.remove(path);
-		moves.addAll(possibleMoves(path.otherPosition(curPos), steps-1, rest));
-	    }
-	}
-
-	return moves;
+	    positions = new ArrayList<>();
+	    paths = new ArrayList<>();
+	    brickList = new ArrayList<>();
+	    setupBoard();
     }
 
 
     public void setupBoard(){
-        addPosition(1, 100, 100, SSD, true, "Linköping", false);
-		addPosition(2, 125, 100, EMPTY, false, "", false);
-		addPosition(3, 150, 100, EMPTY, false, "", false);
-		addPosition(4, 175, 100, EMPTY, false, "", false);
-		addPosition(5, 200, 100, SSD, true, "Göteborg", false);
-		addPosition(6, 225, 100, EMPTY, false, "", false);
-		addPosition(7, 250, 100, EMPTY, false, "", false);
-		addPosition(8, 275, 100, EMPTY, false, "", false);
-		addPosition(9, 300, 100, EMPTY, false, "Stockholm", true);
-		addPosition(10, 300, 125, EMPTY, false, "", false);
-		addPosition(11, 300, 150, EMPTY, false, "", false);
-		addPosition(12, 300, 175, EMPTY, false, "", false);
-		addPosition(13, 300, 200, EMPTY, false, "Kiruna", true);
-		addPosition(14, 275, 200, EMPTY, false, "", false);
-		addPosition(15, 250, 200, EMPTY, false, "", false);
-		addPosition(16, 225, 200, EMPTY, false, "", false);
+	    addPosition(1, 100, 100, SSD, true, "Linköping", false);
+	    addPosition(2, 125, 100, EMPTY, false, "", false);
+	    addPosition(3, 150, 100, EMPTY, false, "", false);
+	    addPosition(4, 175, 100, EMPTY, false, "", false);
+	    addPosition(5, 200, 100, SSD, true, "Göteborg", false);
+	    addPosition(6, 225, 100, EMPTY, false, "", false);
+	    addPosition(7, 250, 100, EMPTY, false, "", false);
+	    addPosition(8, 275, 100, EMPTY, false, "", false);
+	    addPosition(9, 300, 100, EMPTY, false, "Stockholm", true);
+	    addPosition(10, 300, 125, EMPTY, false, "", false);
+	    addPosition(11, 300, 150, EMPTY, false, "", false);
+	    addPosition(12, 300, 175, EMPTY, false, "", false);
+	    addPosition(13, 300, 200, EMPTY, false, "Kiruna", true);
+	    addPosition(14, 275, 200, EMPTY, false, "", false);
+	    addPosition(15, 250, 200, EMPTY, false, "", false);
+	    addPosition(16, 225, 200, EMPTY, false, "", false);
 		addPosition(17, 200, 200, SSD, true, "Örebro", false);
 		addPosition(18, 175, 200, EMPTY, false, "", false);
 		addPosition(19, 150, 200, EMPTY, false, "", false);
@@ -76,10 +46,6 @@ public class GameBoard {
 		addPosition(25, 200, 125, EMPTY, false, "", false);
 		addPosition(26, 200, 150, EMPTY, false, "", false);
 		addPosition(27, 200, 175, EMPTY, false, "", false);
-
-//        addPosition(98, 700, 300, EMPTY, false, "Kairo", true);
-//        addPosition(99, 700, 150, EMPTY, false, "Tanger", true);
-
 
         addPath(1, 2, PathType.WALK, 0, 0, 0);
         addPath(2, 3, PathType.BOAT, 300, 0, 6);
@@ -109,20 +75,17 @@ public class GameBoard {
 		addPath(25, 26, PathType.WALK, 0, 0, 0);
 		addPath(26, 27, PathType.WALK, 0, 0, 0);
 		addPath(27, 17, PathType.WALK, 0, 0, 0);
-
-//        addPath(99, 3, PathType.WALK, 0, 0, 0);
-//        addPath(98, 4, PathType.WALK, 0, 0, 0);
-
     }
 
     private void addPosition(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos){
-    	Position position = new Position(id, xPos, yPos, brick, isCity, cityName, isStartPos);
-    	positions.add(position);
+	    Position position = new Position(id, xPos, yPos, brick, isCity, cityName, isStartPos);
+	    positions.add(position);
+	    addBrick(brick, position);
     }
 
     private void addPath(int id1, int id2, PathType pathType, int costFrom1To2, int costFrom2To1, int alternativeCost){
-        Path path = new Path(getPosition(id1), getPosition(id2), pathType, costFrom1To2, costFrom2To1, alternativeCost);
-        paths.add(path);
+	    Path path = new Path(getPosition(id1), getPosition(id2), pathType, costFrom1To2, costFrom2To1, alternativeCost);
+	    paths.add(path);
     }
 
     public Position getPosition(int id) {
@@ -132,8 +95,14 @@ public class GameBoard {
                 position = pos;
             }
         }
-	return position;
+	    return position;
     }
+
+	private void addBrick(BrickType brickType, Position position){
+		if(!brickType.equals(EMPTY)){
+			brickList.add(new Brick(position.getPos(), brickType));
+		}
+	}
 
     public List<Position> getPositions() {
 	return positions;
@@ -143,11 +112,6 @@ public class GameBoard {
         return paths;
     }
 
-
     public List<Brick> getBrickList() {return brickList;}
-    /*
-    public static BrickType brickAt(int posX, int posY){
-        return brickList.get(0);
-    }
-    */
+
 }

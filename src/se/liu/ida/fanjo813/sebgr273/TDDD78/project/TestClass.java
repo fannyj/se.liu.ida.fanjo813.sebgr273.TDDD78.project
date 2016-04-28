@@ -12,11 +12,12 @@ public class TestClass {
     public static final void main(String[] args) {
 //        Player playah = new Player("Gert", new BoardPosition(0, 0));
 //        System.out.println(playah.toString());
+        BoardViewer boardViewer = new BoardViewer(game);
         game.play();
         for (Player player : game.getPlayers()) {
             System.out.println(player);
         }
         System.out.println(game.getCurPlayer());
-        BoardViewer boardViewer = new BoardViewer(game);
+
     }
 }

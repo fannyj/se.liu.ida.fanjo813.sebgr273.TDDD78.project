@@ -1,7 +1,7 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
 /**
- * Path goes between position1 and position2
+ * Path goes between position1 and position2*
  */
 public class Path {
     private Position position1;
