@@ -17,11 +17,11 @@ public class GameBoard {
 	    positions = new ArrayList<>();
 	    paths = new ArrayList<>();
 	    brickList = new ArrayList<>();
-	    setupBoard();
+	    setBoard();
     }
 
 
-    public void setupBoard(){
+    public void setBoard(){
 	    addPosition(1, 100, 100, SSD, true, "Linköping", false);
 	    addPosition(2, 125, 100, EMPTY, false, "", false);
 	    addPosition(3, 150, 100, MONEY, false, "", false);

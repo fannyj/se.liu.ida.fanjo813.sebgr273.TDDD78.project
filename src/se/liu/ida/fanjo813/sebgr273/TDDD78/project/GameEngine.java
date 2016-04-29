@@ -60,6 +60,10 @@ public class GameEngine extends Bank {
         curPlayer = players.get(curPlayerIndex);
     }
 
+	public int getSteps(){
+		return steps;
+	}
+
     private int diceThrow(){
 	    /*6.0 is the multiplier for the random nr*/
         return (int) (6.0 * Math.random()) + 1;
@@ -69,7 +73,7 @@ public class GameEngine extends Bank {
 		return board;
     }
 
-    public Iterable<Player> getPlayers(){
+    public List<Player> getPlayers(){
         return players;
     }
 
@@ -215,9 +219,9 @@ public class GameEngine extends Bank {
     }
 
 	public void moveRotation(){
-	        /**Checks if the moving player is on a brick*
-	         * and asks if for a action if player is*
-	         */
+		/**Checks if the moving player is on a brick*
+	     * and asks if for a action if player is*
+	     */
 		Point curPos = curPlayer.getCurPoint();
 		System.out.println(curPos);
 		if(onBrick(curPos)){

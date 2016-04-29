@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**
  * This handles with all the backend graphical stuff
- * andthe interaction with the game-engine
+ * and the interaction with the game-engine
  */
 public class BoardComponent extends JComponent implements BoardListener{
 	public static final int CITYDIAMETER = 20;
@@ -14,6 +14,7 @@ public class BoardComponent extends JComponent implements BoardListener{
 	public static final int PLAYERDIAMETER = 22;
 	public static final int PLAYERXPOS = 800;
 	public static final int AMOUNTYPOS = 115;
+	public static final int STEPSYPOS = 130;
 
 	private Image image;
     private  GameEngine game = null;
@@ -113,15 +114,22 @@ public class BoardComponent extends JComponent implements BoardListener{
     }
 
     private void paintPlayers(Graphics g){
-	    for (Player player : game.getPlayers()){
-		    int diameter = PLAYERDIAMETER;
-		    int x = player.getCurPoint().x;
-		    int y = player.getCurPoint().y;
-		    g.setColor(Color.RED);
-		    g.drawOval(x-(diameter/2), y-(diameter/2), diameter, diameter);
-		    g.setColor(Color.BLACK);
-		    g.drawString(game.getCurPlayer().getPlayerName(), PLAYERXPOS, 100);
-		    g.drawString(String.valueOf(game.getCurPlayer().getAmount()), PLAYERXPOS, AMOUNTYPOS);
+	    if(!game.getPlayers().isEmpty()) {
+		    for (Player player : game.getPlayers()) {
+			    int diameter = PLAYERDIAMETER;
+			    int x = player.getCurPoint().x;
+			    int y = player.getCurPoint().y;
+			    g.setColor(Color.RED);
+			    g.drawOval(x - (diameter / 2), y - (diameter / 2), diameter, diameter);
+			    g.setColor(Color.BLACK);
+		    }
+		    if(game.getCurPlayer() != null) {
+			    g.drawString(game.getCurPlayer().getPlayerName(), PLAYERXPOS, 100);
+			    g.drawString(String.valueOf(game.getCurPlayer().getAmount()),
+					    PLAYERXPOS, AMOUNTYPOS);
+			    g.drawString("Steps left: " + game.getSteps(),
+					    PLAYERXPOS, STEPSYPOS);
+		    }
 	    }
     }
 

@@ -10,7 +10,7 @@ public final class TestClass {
     private TestClass(){}
 
     public static void main(String[] args) {
-        BoardViewer boardViewer = new BoardViewer(GAME_ENGINE);
+        new BoardViewer(GAME_ENGINE);
         GAME_ENGINE.play();
         for (Player player : GAME_ENGINE.getPlayers()) {
             System.out.println(player);
