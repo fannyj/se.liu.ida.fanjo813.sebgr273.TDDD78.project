@@ -52,7 +52,6 @@ public class GameEngine extends Bank {
             String id = JOptionPane.showInputDialog(null, "What city do you want to start in?");
             int pos = Integer.parseInt(id);
             players.add(new Player(name, board.getPosition(pos)));
-
         }
     }
 
