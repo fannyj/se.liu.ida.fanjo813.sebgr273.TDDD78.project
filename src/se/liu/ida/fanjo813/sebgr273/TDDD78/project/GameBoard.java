@@ -5,6 +5,9 @@ import java.util.List;
 
 import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.BrickType.*;
 
+/**
+ * Helps GameEngine with the setup of the board*
+ */
 public class GameBoard {
     private List<Position> positions;
     private List<Path> paths;

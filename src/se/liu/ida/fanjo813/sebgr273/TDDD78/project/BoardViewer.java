@@ -8,13 +8,16 @@ import java.awt.event.ActionListener;
 import java.awt.image.*;
 import java.io.*;
 
+/**
+ * The toplevel graphical handler that shows everything*
+ */
 public class BoardViewer extends JFrame{
-    private GameEngine game;
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
+
+	private GameEngine game;
 	private BufferedImage image;
 	private JFrame myJFrame;
-
-	public static final int WIDTH = 1280;
-    public static final int HEIGHT = 720;
 
     public BoardViewer(GameEngine game){
         this.game = game;
@@ -66,26 +69,6 @@ public class BoardViewer extends JFrame{
 	gameMenu.add(quitItem);
 	optionMenu.add(screenSize);
 	optionMenu.add(name);
-
-/*
-	newGameItem.addActionListener(new ActionListener() {
-	    @Override public void actionPerformed(final ActionEvent e) {
-		Object[] options = {"Yes", "Cancel"};
-		int optionChosen = JOptionPane.showOptionDialog(null,
-								"New Game",
-								"New Game",
-								JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE,
-								null,
-								options,
-								options[1]);
-			if (optionChosen == JOptionPane.YES_OPTION){
-			    startNewGame();
-			}
-		    }
-		});
-
-*/
 
 	    quitItem.addActionListener(new ActionListener() {
 		    @Override public void actionPerformed(final ActionEvent e) {

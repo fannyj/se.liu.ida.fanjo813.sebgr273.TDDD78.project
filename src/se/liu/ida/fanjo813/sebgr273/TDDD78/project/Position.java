@@ -2,6 +2,10 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
 import java.awt.*;
 
+/**
+ * Handles the positioning of foremost the bricks and cities of
+ * the game.
+ */
 public class Position{
 	public static final double STARTRADIUS = 12.5;
 	private int id;
@@ -10,8 +14,7 @@ public class Position{
     private boolean isStartPos;
     private String cityName;
     private Point pos;
-
-
+	
     public Position(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos) {
         pos = new Point(xPos, yPos);
         this.id = id;
@@ -66,7 +69,7 @@ public class Position{
     }
 
     public String getCityName() {
-	return cityName;
+	    return cityName;
     }
 
 }

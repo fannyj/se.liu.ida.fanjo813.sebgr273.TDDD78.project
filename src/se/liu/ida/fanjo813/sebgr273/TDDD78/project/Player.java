@@ -2,6 +2,11 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
 import java.awt.Point;
 
+/**
+ * Class for  the player in the game
+ * Handles the positioning and dicethrow for the player
+ * Also extends Bank for easier handling of money
+ */
 public class Player extends Bank {
     public static final int AMOUNT = 5000;
     private String playerName;

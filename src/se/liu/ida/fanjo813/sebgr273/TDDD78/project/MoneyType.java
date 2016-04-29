@@ -1,5 +1,9 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+/**
+ * Enum class for the different moneytypes and how much
+ * they are worth
+ */
 public enum MoneyType {
 
     KAZOO(3000), WAT(4000), KAPPA(5000);

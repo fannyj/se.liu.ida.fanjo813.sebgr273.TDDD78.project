@@ -1,5 +1,8 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+/**
+ *Makes it easier to handle the different moneytypes*
+ */
 public class Money{
     private int amount;
 	private MoneyType moneyType;

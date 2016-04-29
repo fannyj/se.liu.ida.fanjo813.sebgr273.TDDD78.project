@@ -1,5 +1,10 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+
+/**
+ * toplevel class for handling money for the game-engine
+ * and for the player
+ */
 public abstract class Bank {
     protected int amount;
 

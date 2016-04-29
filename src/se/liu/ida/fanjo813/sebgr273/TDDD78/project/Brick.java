@@ -17,7 +17,7 @@ public class Brick {
         return boardPosition;
     }
 
-    public void setBoardPosition(BoardPosition boardPosition) {
+    public void setBoardPosition(Point boardPosition) {
         this.boardPosition = boardPosition;
     }
 

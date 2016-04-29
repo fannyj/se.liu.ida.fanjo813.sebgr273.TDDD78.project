@@ -4,6 +4,10 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This handles with all the backend graphical stuff
+ * andthe interaction with the game-engine
+ */
 public class BoardComponent extends JComponent implements BoardListener{
 	public static final int CITYDIAMETER = 20;
 	public static final int STARTRADIUS = 25;
