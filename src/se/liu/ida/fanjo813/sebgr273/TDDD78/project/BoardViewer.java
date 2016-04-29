@@ -3,8 +3,7 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 import javax.imageio.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 

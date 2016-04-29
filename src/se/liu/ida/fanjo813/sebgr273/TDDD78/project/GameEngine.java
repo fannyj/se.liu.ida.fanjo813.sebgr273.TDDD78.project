@@ -35,11 +35,18 @@ public class GameEngine extends Bank {
     public void setPlayers(){
         //Player player = new Player("Gert", board.getPosition(1));
         String amount = JOptionPane.showInputDialog(null, "How many players?");
-        if(amount == null){
+        if(amount == null || amount.equals("0")){
             System.out.println("Pressed exit");
             System.exit(0);
         }
-        int amnt = Integer.parseInt(amount);
+	    int amnt;
+	    try {
+		    amnt = Integer.parseInt(amount);
+	    } catch (NumberFormatException e){
+		    System.out.println(e);
+		    amnt = 2;
+	    }
+
         for(int i = 0; i < amnt; i++){
             String name = JOptionPane.showInputDialog(null, "Write the name of player " + (i+1) + ":");
             String id = JOptionPane.showInputDialog(null, "What city do you want to start in?");
