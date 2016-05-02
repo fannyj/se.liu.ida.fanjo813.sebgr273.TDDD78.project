@@ -20,7 +20,7 @@ public abstract class Bank {
         this.amount -= amount;
     }
 
-    public void bandit(){amount = 0;}
+    public abstract void bandit();
 
     public int getAmount() {
         return amount;

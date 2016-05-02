@@ -60,7 +60,7 @@ public class BoardViewer extends JFrame{
 	final JMenu gameMenu = new JMenu("Game");
 	final JMenu optionMenu = new JMenu("Option");
 	final JMenuItem newGameItem = new JMenuItem("New Game");
-	final JMenuItem quitItem = new JMenuItem("Main Menu");
+	final JMenuItem quitItem = new JMenuItem("Quit");
 	final JMenuItem screenSize = new JMenuItem("Screen Size");
 	final JMenuItem name = new JMenuItem("Name");
 	gameMenu.add(newGameItem);
@@ -73,8 +73,8 @@ public class BoardViewer extends JFrame{
 		    @Override public void actionPerformed(final ActionEvent e) {
 			    Object[] options = {"Yes", "Cancel"};
 			    int optionChosen = JOptionPane.showOptionDialog(null,
-					    "Go to main menu?",
-					    "Go to main menu",
+					    "Do you want to quit?",
+					    "Quit menu",
 					    JOptionPane.YES_NO_OPTION,
 					    JOptionPane.QUESTION_MESSAGE,
 					    null,

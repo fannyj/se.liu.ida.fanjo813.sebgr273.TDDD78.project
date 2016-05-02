@@ -1,7 +1,5 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
-import org.omg.PortableServer.POA;
-
 import javax.swing.*;
 import java.util.*;
 import java.awt.Point;
@@ -11,13 +9,16 @@ import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.StartPlace.TANGER;
 
 /**
  * Deals with all the non-graphical stuff of the game*
+ *The method-structure is in progress, but it works*
  */
 public class GameEngine extends Bank {
     private List<Player> players;
     private Player curPlayer;
     private int curPlayerIndex, steps;
     private GameBoard board;
-    private boolean winCondition;
+	//Wincondition is  not yet implemented, but will be when it
+	//is possible for a player to win
+	private boolean winCondition;
     private Collection<BoardListener> boardListeners;
 	private List<Brick> brickList;
 
@@ -38,7 +39,7 @@ public class GameEngine extends Bank {
     }
 
     public void setPlayers(){
-	    //Gets all the players at the begining of the game
+	    /*Gets all the players at the begining of the game*/
         String amount = JOptionPane.showInputDialog(null, "How many players?");
         if(amount == null || amount.equals("0")){
             System.out.println("Pressed exit");
@@ -142,6 +143,8 @@ public class GameEngine extends Bank {
     }
 
 	private boolean isPossibleMove(int nextPos, Position playerPos){
+		/*isPosssibleMove isn't fully implemented yet because
+		* of trouble with the joptionpane*/
 		Position startPos = null;
 		for (Position position : board.getPositions()) {
 			if(position.getId() == playerPos.getId()){
@@ -166,6 +169,8 @@ public class GameEngine extends Bank {
 	}
 
 	public boolean isSpecialPath(Path curPath){
+		/*Isn't fully implemented yet because ispossiblemove isn't
+		* and this method is a help-method to that method*/
 		List<Path> pathList = board.getPaths();
 		for (Path path : pathList) {
 			if (path.equals(curPath) &&
@@ -179,6 +184,8 @@ public class GameEngine extends Bank {
 	}
 
 	public boolean handleSpecialPath(Path path, Position playerPos){
+		/*Isn't implemented yet because ispossiblemove
+		* isn't fully implemented yet*/
 		int cost = 0;
 		int altCost = 0;
 
@@ -272,14 +279,20 @@ public class GameEngine extends Bank {
 		switch (brick.getBrickType()){
 			case MONEY:
 				curPlayer.addMoney(brick.getMoney().getAmount());
+				System.out.println("It is a money-brick worth: "
+						+ brick.getMoney().getAmount());
 				break;
 			case SSD:
 				curPlayer.canWin();
+				System.out.println("It is a ssd, get back to the base");
 				break;
 			case STACK:
+				System.out.println("It  is a Stackoverflow, just wait for" +
+						"the ssd now");
 				curPlayer.canWin();
 				break;
 			case BANDIT:
+				System.out.println("Oh no, it is a bandit");
 				curPlayer.bandit();
 				break;
 			case BLANC:
@@ -345,5 +358,12 @@ public class GameEngine extends Bank {
 			System.out.println(e);
 			return true;
 		}
+	}
+
+	@Override
+	public void bandit(){
+		/*Redundant methot but needed declared because
+		* it is abstract in bank class*/
+		removeMoney(getAmount());
 	}
 }

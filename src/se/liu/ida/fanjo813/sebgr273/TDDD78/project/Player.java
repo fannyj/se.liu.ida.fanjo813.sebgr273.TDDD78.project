@@ -43,6 +43,12 @@ public class Player extends Bank {
         return playerName;
     }
 
+    @Override
+    public void bandit(){
+	    /*Sets the players money to 0*/
+	    removeMoney(getAmount());
+    }
+
     public int diceThrow(){
         /*6.0 is the multiplier for the random nr*/
         return (int) (6.0 * Math.random()) + 1;

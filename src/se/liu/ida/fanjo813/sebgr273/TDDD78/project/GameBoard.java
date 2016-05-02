@@ -20,7 +20,6 @@ public class GameBoard {
 	    setBoard();
     }
 
-
     public void setBoard(){
 	    /*This is not easy readable at the moment,
 	    but a method to read this information from a separate
