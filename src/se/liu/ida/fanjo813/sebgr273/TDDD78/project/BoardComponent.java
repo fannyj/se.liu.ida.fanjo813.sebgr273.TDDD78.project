@@ -23,7 +23,6 @@ public class BoardComponent extends JComponent implements BoardListener{
     public BoardComponent(Image image, final GameEngine game) {
         this.image = image;
 	    this.game = game;
-	    //DefaultClickHandler mouseClickHandler = new DefaultClickHandler();
 	    this.addMouseListener(new MouseListener() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
@@ -94,7 +93,6 @@ public class BoardComponent extends JComponent implements BoardListener{
 	    for (Path path : game.getBoard().getPaths()){
 		    Position p1 = path.getPosition1();
 		    Position p2 = path.getPosition2();
-		    // Borde switcha på olika PathType, kanske olika färg/streck...
 		    switch (path.getPathType()){
 			    case AIRPLANE:
 				    g.setColor(Color.MAGENTA);
@@ -108,7 +106,6 @@ public class BoardComponent extends JComponent implements BoardListener{
 			    default:
 				    break;
 		    }
-
 		    g.drawLine(p1.getPos().x, p1.getPos().y, p2.getPos().x, p2.getPos().y);
 	    }
     }

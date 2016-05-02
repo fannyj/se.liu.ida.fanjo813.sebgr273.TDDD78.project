@@ -1,8 +1,13 @@
 package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
+import org.omg.PortableServer.POA;
+
 import javax.swing.*;
 import java.util.*;
 import java.awt.Point;
+
+import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.StartPlace.KAIRO;
+import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.StartPlace.TANGER;
 
 /**
  * Deals with all the non-graphical stuff of the game*
@@ -33,25 +38,44 @@ public class GameEngine extends Bank {
     }
 
     public void setPlayers(){
-        //Player player = new Player("Gert", board.getPosition(1));
+	    //Gets all the players at the begining of the game
         String amount = JOptionPane.showInputDialog(null, "How many players?");
         if(amount == null || amount.equals("0")){
             System.out.println("Pressed exit");
             System.exit(0);
         }
+
 	    int amnt;
-	    try {
-		    amnt = Integer.parseInt(amount);
-	    } catch (NumberFormatException e){
-		    System.out.println(e);
+
+	    if(catchNumber(amount)){
 		    amnt = 2;
+	    } else {
+		    amnt = Integer.parseInt(amount);
 	    }
 
         for(int i = 0; i < amnt; i++){
             String name = JOptionPane.showInputDialog(null, "Write the name of player " + (i+1) + ":");
-            String id = JOptionPane.showInputDialog(null, "What city do you want to start in?");
-            int pos = Integer.parseInt(id);
-            players.add(new Player(name, board.getPosition(pos)));
+	        while(!catchNumber(name)){
+		        JOptionPane.showMessageDialog(null, "Invalid input");
+		        name = JOptionPane.showInputDialog(null, "Please try again");
+	        }
+	        Object[] options = {
+	        				"Kairo",
+	        				"Tanger"
+	        };
+	        int ans = JOptionPane.showOptionDialog(null,
+			        "Which city do you want to start in?",
+			        "Startcity",
+			        JOptionPane.YES_NO_OPTION,
+			        JOptionPane.QUESTION_MESSAGE,
+			        null,
+			        options,
+			        options[1]);
+            if(ans == 0){
+	            players.add(new Player(name, KAIRO.getPosition()));
+            } else if (ans == 1){
+	            players.add(new Player(name, TANGER.getPosition()));
+            }
         }
     }
 
@@ -79,7 +103,7 @@ public class GameEngine extends Bank {
 		return board;
     }
 
-    public List<Player> getPlayers(){
+    public Collection<Player> getPlayers(){
         return players;
     }
 
@@ -311,5 +335,15 @@ public class GameEngine extends Bank {
 			}
 		}
 		return null;
+	}
+
+	private boolean catchNumber(String in){
+		try{
+			Integer.parseInt(in);
+			return false;
+		} catch (NumberFormatException e){
+			System.out.println(e);
+			return true;
+		}
 	}
 }

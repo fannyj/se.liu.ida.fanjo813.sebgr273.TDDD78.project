@@ -22,6 +22,9 @@ public class GameBoard {
 
 
     public void setBoard(){
+	    /*This is not easy readable at the moment,
+	    but a method to read this information from a separate
+	    document will be implemented later*/
 	    addPosition(1, 100, 100, SSD, true, "Linköping", false);
 	    addPosition(2, 125, 100, EMPTY, false, "", false);
 	    addPosition(3, 150, 100, MONEY, false, "", false);
@@ -30,11 +33,11 @@ public class GameBoard {
 	    addPosition(6, 225, 100, EMPTY, false, "", false);
 	    addPosition(7, 250, 100, EMPTY, false, "", false);
 	    addPosition(8, 275, 100, EMPTY, false, "", false);
-	    addPosition(9, 300, 100, EMPTY, false, "Stockholm", true);
+	    addPosition(9, 300, 100, EMPTY, false, "Tanger", true);
 	    addPosition(10, 300, 125, EMPTY, false, "", false);
 	    addPosition(11, 300, 150, EMPTY, false, "", false);
 	    addPosition(12, 300, 175, EMPTY, false, "", false);
-	    addPosition(13, 300, 200, EMPTY, false, "Kiruna", true);
+	    addPosition(13, 300, 200, EMPTY, false, "Kairo", true);
 	    addPosition(14, 275, 200, EMPTY, false, "", false);
 	    addPosition(15, 250, 200, EMPTY, false, "", false);
 	    addPosition(16, 225, 200, EMPTY, false, "", false);

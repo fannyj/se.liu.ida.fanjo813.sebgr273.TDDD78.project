@@ -5,7 +5,6 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
  * they are worth
  */
 public enum MoneyType {
-	/*Ta bort?*/
     KAZOO(3000), WAT(4000), KAPPA(5000);
 
     public final int amount;
