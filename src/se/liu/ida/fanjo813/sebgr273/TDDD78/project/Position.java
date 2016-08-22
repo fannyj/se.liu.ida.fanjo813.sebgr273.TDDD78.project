@@ -30,7 +30,7 @@ public class Position{
 		    minX -= 10; minY -= 10; maxX += 10;
 		    maxY += 10;
 	    } else if (this.isStartPos){
-		    minX -= STARTRADIUS; minY -= STARTRADIUS; maxX += STARTRADIUS;
+		    minX -= STARTRADIUS; inY -= STARTRADIUS; maxX += STARTRADIUS;
 		    maxY += STARTRADIUS;
 	    } else {
 		    minX -= 5; minY -= 5; maxX += 5;
@@ -47,22 +47,5 @@ public class Position{
 	return id;
     }
 
-    public BrickType getBrick() {
-	return brick;
-    }
-
-    public boolean posIsCity() {
-	    return isCity;
-    }
-
-    public boolean posIsStart(){return isStartPos;}
-
-    public Point getPos(){
-		return pos;
-    }
-
-    public String getCityName() {
-	    return cityName;
-    }
 
 }
