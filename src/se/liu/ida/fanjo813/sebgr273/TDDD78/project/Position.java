@@ -9,23 +9,16 @@ import java.awt.*;
 public class Position{
 	public static final double STARTRADIUS = 12.5;
 	private int id;
-    private BrickType brick; //Bara city´s kan ha bricks. Alla andra är EMPTY
-    private boolean isCity;
-    private boolean isStartPos;
-    private String cityName;
     private Point pos;
 	
-    public Position(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos) {
+    public Position(int id, int xPos, int yPos) {
         pos = new Point(xPos, yPos);
         this.id = id;
-        this.brick = brick;
-        this.isCity = isCity;
-        this.cityName = cityName;
-        this.isStartPos = isStartPos;
     }
 
+	/**returns true if the mouseclick is within the circle*/
     public boolean isRoughPosition(Point clickPos){
-	    /**returns true if the mouseclick is within the circle*/
+
 	    double clickX = clickPos.getX();
 	    double clickY = clickPos.getY();
 	    double minX = pos.getX();

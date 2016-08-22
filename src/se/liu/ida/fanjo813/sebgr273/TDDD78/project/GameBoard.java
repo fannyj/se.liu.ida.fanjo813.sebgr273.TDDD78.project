@@ -2,6 +2,7 @@ package se.liu.ida.fanjo813.sebgr273.TDDD78.project;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 import static se.liu.ida.fanjo813.sebgr273.TDDD78.project.BrickType.*;
 
@@ -24,7 +25,39 @@ public class GameBoard {
 	    /*This is not easy readable at the moment,
 	    but a method to read this information from a separate
 	    document will be implemented later*/
-	    addPosition(1, 100, 100, SSD, true, "Linköping", false);
+	    String fileName1 = "places.txt";
+
+	    String line = null;
+
+	    try {
+		    // FileReader reads text files in the default encoding.
+		    FileReader fileReader =
+				    new FileReader(fileName1);
+
+		    // Always wrap FileReader in BufferedReader.
+		    BufferedReader bufferedReader =
+				    new BufferedReader(fileReader);
+
+		    while(bufferedReader.readLine() != null) {
+
+		    }
+
+		    // Always close files.
+		    bufferedReader.close();
+	    }
+	    catch(FileNotFoundException ex) {
+		    System.out.println(
+				    "Unable to open file '" +
+						    fileName1 + "'");
+	    }
+	    catch(IOException ex) {
+		    System.out.println(
+				    "Error reading file '"
+						    + fileName1 + "'");
+		    // Or we could just do this:
+		    // ex.printStackTrace();
+	    }
+	    /*addPosition(1, 100, 100, SSD, true, "Linköping", false);
 	    addPosition(2, 125, 100, EMPTY, false, "", false);
 	    addPosition(3, 150, 100, MONEY, false, "", false);
 	    addPosition(4, 175, 100, EMPTY, false, "", false);
@@ -80,6 +113,7 @@ public class GameBoard {
 		addPath(25, 26, PathType.WALK, 0, 0, 0);
 		addPath(26, 27, PathType.WALK, 0, 0, 0);
 		addPath(27, 17, PathType.WALK, 0, 0, 0);
+		*/
     }
 
     private void addPosition(int id, int xPos, int yPos, BrickType brick, boolean isCity, String cityName, boolean isStartPos){
